@@ -2,7 +2,7 @@
 import ROOT
 import MassDistribution
 
-def CMSStyle(histo, histoMC, canvas_name, particle):
+def PlottingMass(histo, histoMC, canvas_name, particle):
     """ Plotting Utilities
     
         Parameters:
@@ -24,37 +24,17 @@ def CMSStyle(histo, histoMC, canvas_name, particle):
     
     upper_pad = ROOT.TPad("upper_pad", "", 0, 0.18, 1, 1)
     lower_pad = ROOT.TPad("lower_pad", "", 0, 0, 1, 0.25)
-    lower_pad.SetBottomMargin(0.3)
     upper_pad.Draw()
     lower_pad.Draw()
     
     upper_pad.cd()     
-    upper_pad.SetLogy(1) 
-    histo.SetTitle("")
-    histoMC.GetXaxis().SetLabelSize(0)
-    histoMC.SetTitle("")
     histoMC.SetMinimum(10)
-    histoMC.SetMaximum(1e6)
-    histoMC.SetFillColor(ROOT.kOrange-2)
-        
+    histoMC.SetMaximum(1e6)    
     histoMC.GetYaxis().SetTitle("Events/GeV")
-    histoMC.GetYaxis().SetTitleSize(0.04)
-    
-    histo.SetMarkerStyle(20)
-    histo.SetMarkerSize(1.0)
-    histo.SetMarkerColor(ROOT.kBlack)
-    histo.SetLineColor(ROOT.kBlack)
-    
     histoMC.Draw("HIST")
     histo.Draw("E SAME")
     
     legend = ROOT.TLegend(0.7, 0.75, 0.85, 0.88)
-    legend.SetTextFont(42)
-    legend.SetFillStyle(0)
-    legend.SetBorderSize(0)
-    legend.SetTextSize(0.03)
-    legend.SetTextAlign(32)
-    
     if(particle == 'Muon'):
         legend.AddEntry(histo.GetValue(), "Data", "lep")
         legend.AddEntry(histoMC.GetValue(), "Z#rightarrow#mu#mu", "f")
@@ -65,6 +45,56 @@ def CMSStyle(histo, histoMC, canvas_name, particle):
     
     legend.Draw() 
     ROOT.SetOwnership(legend, 0)       
+    
+    lower_pad.cd()
+    ratio = histo.Clone()
+    ratio.Sumw2()
+    ratio.Divide(histoMC.Clone())
+    ratio.SetMinimum(0.3)
+    ratio.SetMaximum(1.5)
+    
+    if(particle == 'Muon'):
+        ratio.GetXaxis().SetTitle("m_{#mu#mu} [GeV]")
+        ratio.GetXaxis().SetTitleSize(0.13)
+    if(particle == 'Electron'):
+        ratio.GetXaxis().SetTitle("m_{ee} [GeV]")
+        ratio.GetXaxis().SetTitleSize(0.13)    
+       
+    ratio.Draw("PESAME")
+    ROOT.SetOwnership(ratio, 0)
+    c.Draw() 
+    
+    CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend, ratio)
+       
+    return c
+    #c.SaveAs("Prova.pdf")
+    
+def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend, ratio):
+
+    ROOT.gStyle.SetOptStat(0)
+    ROOT.gStyle.SetTextFont(42)
+    lower_pad.SetBottomMargin(0.3)
+    upper_pad.SetLogy(1)
+    upper_pad.cd()    
+     
+    histo.SetTitle("")
+    histoMC.GetXaxis().SetLabelSize(0)
+    histoMC.SetTitle("")
+    
+    histoMC.SetFillColor(ROOT.kOrange-2)
+    
+    histoMC.GetYaxis().SetTitleSize(0.04)
+    histo.SetMarkerStyle(20)
+    histo.SetMarkerSize(1.0)
+    histo.SetMarkerColor(ROOT.kBlack)
+    histo.SetLineColor(ROOT.kBlack)
+   
+    legend.SetTextFont(42)
+    legend.SetFillStyle(0)
+    legend.SetBorderSize(0)
+    legend.SetTextSize(0.03)
+    legend.SetTextAlign(32)     
+    ROOT.SetOwnership(legend, 0)
     
     text = ROOT.TLatex()
     text.SetNDC()
@@ -100,25 +130,16 @@ def CMSStyle(histo, histoMC, canvas_name, particle):
             text.DrawLatex(0.15,0.80, "0.8 < |y_{ee}| < 1.2")
         if(canvas_name == 'ElMassDistribution3'):
             text.SetTextSize(0.03)
-            text.DrawLatex(0.15,0.80, "1.6 < |y_{ee}| < 2.0")                    
+            text.DrawLatex(0.15,0.80, "1.6 < |y_{ee}| < 2.0")    
+    
     
     lower_pad.cd()
     lower_pad.SetGridy()
     lower_pad.SetTicks()
     
-    ratio = histo.Clone()
-    ratio.Sumw2()
-    ratio.Divide(histoMC.Clone())
-    ratio.SetMinimum(0.3)
-    ratio.SetMaximum(1.5)
-    
-    if(particle == 'Muon'):
-        ratio.GetXaxis().SetTitle("m_{#mu#mu} [GeV]")
-        ratio.GetXaxis().SetTitleSize(0.13)
-    if(particle == 'Electron'):
-        ratio.GetXaxis().SetTitle("m_{ee} [GeV]")
-        ratio.GetXaxis().SetTitleSize(0.13)    
-        
+    ratio.SetTitle("")
+    ratio.SetMarkerStyle(20)
+    ratio.SetMarkerSize(1.0)
     ratio.GetXaxis().SetLabelSize(0.13)  
     ratio.GetYaxis().SetLabelSize(0.11)
     ratio.GetYaxis().SetTitleSize(0.13)
@@ -126,14 +147,21 @@ def CMSStyle(histo, histoMC, canvas_name, particle):
     ratio.GetYaxis().CenterTitle()
     ratio.GetYaxis().SetTitleOffset(0.3)
     ratio.GetYaxis().SetNdivisions(505) 
-       
+    
     ratio.Draw("PESAME")
-    ROOT.SetOwnership(ratio, 0)
+    ROOT.SetOwnership(ratio, 0)   
     
-    c.Draw() 
-       
-    return c
-    #c.SaveAs("Prova.pdf")
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
