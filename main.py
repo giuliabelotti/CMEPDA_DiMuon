@@ -39,11 +39,19 @@ if __name__ == '__main__':
             
         
     if(args.MuonAngle == True):   
-        h_mu_0_y_04, h_mu_08_y_12, h_mu_16_y_2 = AngleDistribution.AngleDistribution('data/GoodMu.root', 'TreeMu', 'Muon')
-        h_mu_0_y_04_MC, h_mu_08_y_12_MC, h_mu_16_y_2_MC = MassDistribution.MassDistribution('data/GoodMuMC.root', 'TreeMuMC', 'Muon')
-        #canvas1 = Plotting.CMSStyle(h_mu_0_y_04, h_mu_0_y_04_MC, "MuAngleDistribution1", "Muon")
-        #canvas2 = Plotting.CMSStyle(h_mu_08_y_12, h_mu_08_y_12_MC, "MuAngleDistribution2", "Muon")
-        #canvas3 = Plotting.CMSStyle(h_mu_16_y_2, h_mu_16_y_2_MC, "MuAngleDistribution3", "Muon")
+        h_mu_0_y_04_a, h_mu_08_y_12_a, h_mu_16_y_2_a = AngleDistribution.AngleDistribution('data/GoodMu.root', 'TreeMu', 'Muon')
+        h_mu_0_y_04_MC_a, h_mu_08_y_12_MC_a, h_mu_16_y_2_MC_a = AngleDistribution.AngleDistribution('data/GoodMuMC.root', 'TreeMuMC', 'Muon')
+        canvasAngle1 = Plotting.PlottingAngle(h_mu_0_y_04_a, h_mu_0_y_04_MC_a, "MuAngleDistribution1", "Muon")
+        canvasAngle2 = Plotting.PlottingAngle(h_mu_08_y_12_a, h_mu_08_y_12_MC_a, "MuAngleDistribution2", "Muon")
+        canvasAngle3 = Plotting.PlottingAngle(h_mu_16_y_2_a, h_mu_16_y_2_MC_a, "MuAngleDistribution3", "Muon")
+        
+    if(args.ElectronAngle == True):   
+        h_e_0_y_04_a, h_e_08_y_12_a, h_e_16_y_2_a = AngleDistribution.AngleDistribution('data/GoodElectron.root', 'TreeEl', 'Electron')
+        h_e_0_y_04_MC_a, h_e_08_y_12_MC_a, h_e_16_y_2_MC_a = AngleDistribution.AngleDistribution('data/GoodElectronMC.root', 'TreeElMC', 'Electron')
+        canvas4 = Plotting.PlottingAngle(h_e_0_y_04_a, h_e_0_y_04_MC_a,  "ElAngleDistribution1", "Electron")
+        canvas5 = Plotting.PlottingAngle(h_e_08_y_12_a, h_e_08_y_12_MC_a, "ElAngleDistribution2", "Electron")
+        canvas6 = Plotting.PlottingAngle(h_e_16_y_2_a, h_e_16_y_2_MC_a, "ElAngleDistribution", "Electron") 
+        
     
     
   
