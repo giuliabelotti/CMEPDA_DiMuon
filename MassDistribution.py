@@ -39,7 +39,7 @@ def MassDistribution(file_name, Tree_name, particle):
     ROOT.gInterpreter.ProcessLine(cpp_code_invMass)
     ROOT.gInterpreter.ProcessLine(cpp_code_rapidity)
     
-    if(particle == 'Muon'):    
+    if(particle == 'Muon'):   
         df = df.Define("DiMuon_Mass", "invMass(Muon_pt[0], Muon_eta[0], Muon_phi[0], Muon_pt[1], Muon_eta[1], Muon_phi[1], Muon_mass[0])")
         df = df.Define("y", "Rapidity(Muon_pt[0], Muon_eta[0], Muon_phi[0], Muon_pt[1], Muon_eta[1], Muon_phi[1], Muon_mass[0])")
         
@@ -48,7 +48,7 @@ def MassDistribution(file_name, Tree_name, particle):
         df = df.Define("y", "Rapidity(Electron_pt[0], Electron_eta[0], Electron_phi[0], Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[0])")       
 
     
-    df_0_y_04 = df.Filter("abs(y)<0.4", "Range Rapidity")
+    df_0_y_04 = df.Filter("abs(y)>0 && abs(y)<0.4", "Range Rapidity")
     df_08_y_12 = df.Filter("abs(y)>0.8 && abs(y)<1.2", "Range Rapidity")
     df_16_y_2 = df.Filter("abs(y)>1.6 && abs(y)<2.0", "Range Rapidity") 
 
