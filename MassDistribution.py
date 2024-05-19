@@ -18,34 +18,19 @@ def MassDistribution(file_name, Tree_name, particle):
     """
     df = ROOT.RDataFrame(Tree_name, file_name)
     
-    cpp_code_invMass = '''   
-        float invMass(float pt1, float eta1, float phi1, float pt2, float eta2, float phi2, float mass){
-            TLorentzVector p1, p2;
-            p1.SetPtEtaPhiM(pt1, eta1, phi1, mass);
-            p2.SetPtEtaPhiM(pt2, eta2, phi2, mass);
-            return (p1+p2).M();
-        } 
-    '''
-
-    cpp_code_rapidity = '''   
-        float Rapidity(float pt1, float eta1, float phi1, float pt2, float eta2, float phi2, float mass){
-            TLorentzVector p1, p2;
-            p1.SetPtEtaPhiM(pt1, eta1, phi1, mass);
-            p2.SetPtEtaPhiM(pt2, eta2, phi2, mass);
-            return (p1+p2).Rapidity();
-        } 
-    '''
-
-    ROOT.gInterpreter.ProcessLine(cpp_code_invMass)
-    ROOT.gInterpreter.ProcessLine(cpp_code_rapidity)
-    
-    if(particle == 'Muon'):   
-        df = df.Define("DiMuon_Mass", "invMass(Muon_pt[0], Muon_eta[0], Muon_phi[0], Muon_pt[1], Muon_eta[1], Muon_phi[1], Muon_mass[0])")
-        df = df.Define("y", "Rapidity(Muon_pt[0], Muon_eta[0], Muon_phi[0], Muon_pt[1], Muon_eta[1], Muon_phi[1], Muon_mass[0])")
+    ROOT.gInterpreter.ProcessLine('#include "Vector_Library.h"')
+  
+    if(particle == 'Muon'): 
+        df = df.Define("p1","Vector(Muon_pt[0], Muon_eta[0], Muon_phi[0], Muon_mass[0])")
+        df = df.Define("p2","Vector(Muon_pt[1], Muon_eta[1], Muon_phi[1], Muon_mass[1])")
+        df = df.Define("DiMuon_Mass", "invMass(p1,p2)")
+        df = df.Define("y", "Rapidity(p1,p2)")
         
     elif(particle == 'Electron'):
-        df = df.Define("DiElectron_Mass", "invMass(Electron_pt[0], Electron_eta[0], Electron_phi[0], Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[0])")
-        df = df.Define("y", "Rapidity(Electron_pt[0], Electron_eta[0], Electron_phi[0], Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[0])")       
+        df = df.Define("p1","Vector(Electron_pt[0], Electron_eta[0], Electron_phi[0], Electron_mass[0])")
+        df = df.Define("p2","Vector(Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[1])")       
+        df = df.Define("DiElectron_Mass", "invMass(p1,p2)")
+        df = df.Define("y", "Rapidity(p1,p2)")       
 
     
     df_0_y_04 = df.Filter("abs(y)>0 && abs(y)<0.4", "Range Rapidity")
