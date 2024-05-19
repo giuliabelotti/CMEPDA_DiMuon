@@ -32,6 +32,9 @@ def PlottingMass(histo, histoMC, canvas_name, particle):
     histoMC.SetMinimum(10)
     histoMC.SetMaximum(1e6)    
     histoMC.GetYaxis().SetTitle("Events/GeV")
+    
+    histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) ########
+    
     histoMC.Draw("HIST")
     histo.Draw("E SAME")
     
@@ -98,8 +101,11 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
     
     upper_pad.cd()     
     histoMC.SetMinimum(0)
-    histoMC.SetMaximum(1e5)    
+    histoMC.SetMaximum(1e6)    
     histoMC.GetYaxis().SetTitle("Events/0.05")
+    
+    histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) ############
+    
     histoMC.Draw("HIST")
     histo.Draw("E SAME")
     
