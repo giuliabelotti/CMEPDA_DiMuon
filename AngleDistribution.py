@@ -112,7 +112,7 @@ def AngleDistribution(file_name, Tree_name, particle):
         df = df.Define("SystemMass", "SystemMass(Muon_pt[0], Muon_eta[0], Muon_phi[0], Muon_pt[1], Muon_eta[1], Muon_phi[1], Muon_mass[0])")
         df = df.Define("SystempT", "SystempT(Muon_pt[0], Muon_eta[0], Muon_phi[0], Muon_pt[1], Muon_eta[1], Muon_phi[1], Muon_mass[0])")
         df = df.Define("CosThetaMu", "(2*(P1p*P2m - P1m*P2p)*pZ)/(sqrt(pow(SystemMass,2)*(pow(SystemMass,2) + pow(SystempT,2)))*abs(pZ))")
-        print(df.Describe())
+        
     
     elif(particle == 'Electron'):
         df = df.Define("y", "Rapidity(Electron_pt[0], Electron_eta[0], Electron_phi[0], Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[0])")    
@@ -123,7 +123,7 @@ def AngleDistribution(file_name, Tree_name, particle):
         df = df.Define("P2m", "P2m(Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[1])")
         df = df.Define("SystemMass", "SystemMass(Electron_pt[0], Electron_eta[0], Electron_phi[0], Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[0])")
         df = df.Define("SystempT", "SystempT(Electron_pt[0], Electron_eta[0], Electron_phi[0], Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[0])")
-        df = df.Define("CosThetaEl", "(2*(P1p*P2m - P1m*P2p)/sqrt(pow(SystemMass,2)*(pow(SystemMass,2) + pow(SystempT,2))))*(pZ/abs(pZ))" )
+        df = df.Define("CosThetaEl", "(2*(P1p*P2m - P1m*P2p)*pZ)/(sqrt(pow(SystemMass,2)*(pow(SystemMass,2) + pow(SystempT,2)))*abs(pZ))")
         
     df_0_y_04 = df.Filter("abs(y)>0 && abs(y)<0.4", "Range Rapidity")
     df_08_y_12 = df.Filter("abs(y)>0.8 && abs(y)<1.2", "Range Rapidity")
