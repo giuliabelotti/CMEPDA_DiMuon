@@ -28,9 +28,7 @@ def PlottingMass(histo, histoMC, canvas_name, particle):
     lower_pad.Draw()
     
     upper_pad.cd()
-    upper_pad.SetLogy(1)     
-   # histoMC.SetMinimum(10)
-    #histoMC.SetMaximum(1e6)    
+    upper_pad.SetLogy(1)
     histoMC.GetYaxis().SetTitle("Events/GeV")
     
     histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) 
