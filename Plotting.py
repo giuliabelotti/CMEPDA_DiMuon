@@ -29,11 +29,11 @@ def PlottingMass(histo, histoMC, canvas_name, particle):
     
     upper_pad.cd()
     upper_pad.SetLogy(1)     
-    histoMC.SetMinimum(10)
-    histoMC.SetMaximum(1e6)    
+   # histoMC.SetMinimum(10)
+    #histoMC.SetMaximum(1e6)    
     histoMC.GetYaxis().SetTitle("Events/GeV")
     
-    histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) ########
+    histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) 
     
     histoMC.Draw("HIST")
     histo.Draw("E SAME")
@@ -100,11 +100,11 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
     lower_pad.Draw()
     
     upper_pad.cd()     
-    histoMC.SetMinimum(0)
-    histoMC.SetMaximum(1e6)    
+    #histoMC.SetMinimum(0)
+    #histoMC.SetMaximum(1e6)    
     histoMC.GetYaxis().SetTitle("Events/0.05")
     
-    histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) ############
+    histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) 
     
     histoMC.Draw("HIST")
     histo.Draw("E SAME")
@@ -126,7 +126,7 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
     ratio.Sumw2()
     ratio.Divide(histoMC.Clone())
     ratio.SetMinimum(0.3)
-    ratio.SetMaximum(1.5)
+    ratio.SetMaximum(1.8)
     
     if(particle == 'Muon'):
         ratio.GetXaxis().SetTitle("cos#theta")
@@ -181,6 +181,30 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
     histo.SetMarkerSize(1.0)
     histo.SetMarkerColor(ROOT.kBlack)
     histo.SetLineColor(ROOT.kBlack)
+    
+    if((canvas_name == 'MuMassDistribution1') or (canvas_name == 'MuMassDistribution2') or (canvas_name == 'MuMassDistribution3')):
+        histoMC.SetMinimum(10)
+        histoMC.SetMaximum(1e6)
+        
+    if((canvas_name == 'ElMassDistribution1') or (canvas_name == 'ElMassDistribution2') or (canvas_name == 'ElMassDistribution3')):
+        histoMC.SetMinimum(10)
+        histoMC.SetMaximum(1e6)
+        
+    
+    if((canvas_name == 'MuAngleDistribution1') or (canvas_name == 'MuAngleDistribution2')):
+        histoMC.SetMinimum(10)
+        histoMC.SetMaximum(4e4)    
+    if(canvas_name == 'MuAngleDistribution3'):
+        histoMC.SetMinimum(10)
+        histoMC.SetMaximum(1e4)
+        
+    if((canvas_name == 'ElAngleDistribution1') or (canvas_name == 'ElAngleDistribution2')):
+        histoMC.SetMinimum(10)
+        histoMC.SetMaximum(4e4)    
+    if(canvas_name == 'ElAngleDistribution3'):
+        histoMC.SetMinimum(10)
+        histoMC.SetMaximum(4e4)    
+        
    
     legend.SetTextFont(42)
     legend.SetFillStyle(0)
