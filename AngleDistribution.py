@@ -3,7 +3,7 @@ import ROOT
 import ParticleSelection
 
 def AngleDistribution(file_name, Tree_name, particle):
-    """ Mass distribution in three representative bins in rapidity
+    """ Cos(Theta) distribution in three representative bins in rapidity
     
         Parameters:
             file_name : string
