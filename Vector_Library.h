@@ -153,10 +153,47 @@ float CosTheta(float invMass, float pz, float P1p, float P2p, float P1m, float P
                  The transverse momentum of the di-LorentzVector system 
                              
         Returns:
-            The Cos(Theta)
+            The CosTheta
     */
     return (2*(P1p*P2m - P1m*P2p)*pz)/(sqrt(pow(invMass,2)*(pow(invMass,2) + pow(SystempT,2)))*abs(pz));
 }             
+//#############################################
+float h(float CosTheta){
+    /*!
+        Parameters:
+            CosTheta : float
+                             
+        Returns:
+            A float
+    */
+    float A0 = 0.1;
+    return (0.5*A0*(1-3*pow(CosTheta,2)));
+}
+
+float wD(float CosTheta, float h){
+    /*!
+        Parameters:
+            CosTheta : float
+            h : float
+                             
+        Returns:
+           Denominator Weights
+    */
+    return (0.5*pow(CosTheta,2)/(pow((1+pow(CosTheta,2)+h),3)));
+}
+
+
+float wN(float CosTheta, float h){
+    /*!
+        Parameters:
+            CosTheta : float
+            h : float
+                             
+        Returns:
+           Numerator Weights
+    */
+    return (0.5*abs(CosTheta)/(pow((1+pow(CosTheta,2)+h),2)));
+}              
 
 
 
