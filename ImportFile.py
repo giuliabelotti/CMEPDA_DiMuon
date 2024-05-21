@@ -1,5 +1,6 @@
 
 import ROOT
+import logging
 
 def CreateDF():
     """ Create dataframe from NanoAOD files
@@ -21,5 +22,12 @@ def CreateDF():
     
     df_MC = ROOT.RDataFrame("Events", "root://eospublic.cern.ch//eos/opendata/cms/derived-data/NanoAODRun1/01-Jul-22/MonteCarlo11_Summer11LegDR_DYJetsToLL_M-50_7TeV-madgraph-pythia6-tauola_merged.root")
     
+    logging.basicConfig(level = logging.INFO)
+    
+    logging.info('Imported the right RDataFrame')
+    
     #print("Created the RDataFrame for data")
     return df_data_mu, df_data_el, df_MC
+    
+    
+    
