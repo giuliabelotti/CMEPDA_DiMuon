@@ -3,12 +3,12 @@ import ROOT
 import numpy as np
 import A_FB
 
-def Plot(A_FB_1Range, A_FB_2Range, A_FB_3Range, A_FB_4Range, A_FB_5Range, A_FB_6Range, canvas_name, particle):
+def Plot(A_FB, canvas_name, particle):
 
     ROOT.gStyle.SetOptStat(0)
     ROOT.gStyle.SetTextFont(42)
-    c = ROOT.TCanvas(canvas_name, "", 800, 700)
-        
+    c = ROOT.TCanvas(canvas_name, "", 800, 700)   
+          
     pad1 = ROOT.TPad("pad1", "pad1", 0.03, 0., 0.18, 0.9)
     pad2 = ROOT.TPad("pad2", "pad2", 0.19, 0., 0.34, 0.9)
     pad3 = ROOT.TPad("pad3", "pad3", 0.35, 0., 0.50, 0.9)
@@ -17,29 +17,35 @@ def Plot(A_FB_1Range, A_FB_2Range, A_FB_3Range, A_FB_4Range, A_FB_5Range, A_FB_6
     pad6 = ROOT.TPad("pad6", "pad6", 0.86, 0., 1.00, 0.9)
     
     pad1.SetTopMargin(0.1)
-    pad1.SetLeftMargin(0.20)
+    pad1.SetLeftMargin(0.17)
     pad1.SetBottomMargin(0.1)
     pad1.SetBorderMode(0)
+    
     pad2.SetTopMargin(0.1)
     pad2.SetLeftMargin(0.17)
     pad2.SetBottomMargin(0.1)
     pad2.SetBorderMode(0)
+    
     pad3.SetTopMargin(0.1)
     pad3.SetLeftMargin(0.17)
     pad3.SetBottomMargin(0.1)
     pad3.SetBorderMode(0)
+    
     pad4.SetTopMargin(0.1)
     pad4.SetLeftMargin(0.17)
     pad4.SetBottomMargin(0.1)
     pad4.SetBorderMode(0)
+    
     pad5.SetTopMargin(0.1)
     pad5.SetLeftMargin(0.17)
     pad5.SetBottomMargin(0.1)
     pad5.SetBorderMode(0)
+    
     pad6.SetTopMargin(0.1)
     pad6.SetLeftMargin(0.17)
     pad6.SetBottomMargin(0.1)
     pad6.SetBorderMode(0)
+    
     pad1.Draw()
     pad2.Draw()
     pad3.Draw()
@@ -47,23 +53,111 @@ def Plot(A_FB_1Range, A_FB_2Range, A_FB_3Range, A_FB_4Range, A_FB_5Range, A_FB_6
     pad5.Draw()
     pad6.Draw()
 
-    n = 12
-    x = np.array([62.5, 67.5, 72.5, 77.5, 82.5, 87.5, 92.5, 97.5, 102.5, 107.5, 112.5, 117.5])
-    x =  ROOT.std.vector("double")(x)
-    
-    histo1 = ROOT.TH1D("histo", "histo", 12, 60,120)
-    
-    for i in range(12):
-        histo1.SetBinContent(i,A_FB_1Range[i])
-    
-    
+    text = ROOT.TLatex()
+    text.SetNDC()
+    text.SetTextAlign(13);
+    text.SetTextFont(42)
+    text.SetTextSize(0.05)
+            
     pad1.cd()
-    histo1.Draw("E")
-       
-  
+    A_FB1_range = A_FB.ProjectionX("Range1", 1,1, "ED")
+    AFB_Style(A_FB1_range, canvas_name, particle)
+    if(particle == 'Muon'):
+        text.DrawLatex(0.19,0.87, "0.0 < |y_{#mu#mu}| < 0.4")  
+    elif(particle == 'Electron'):
+        text.DrawLatex(0.19,0.87, "0.0 < |y_{ee}| < 0.4")    
+
+    pad2.cd()
+    A_FB2_range = A_FB.ProjectionX("Range2", 2,2, "ED")
+    AFB_Style(A_FB2_range, canvas_name, particle)
+    if(particle == 'Muon'):
+        text.DrawLatex(0.19,0.87, "0.4 < |y_{#mu#mu}| < 0.8")    
+    elif(particle == 'Electron'):
+        text.DrawLatex(0.19,0.87, "0.4 < |y_{ee}| < 0.8")    
+
+    pad3.cd()
+    A_FB3_range = A_FB.ProjectionX("Range3",3 ,3, "ED")
+    AFB_Style(A_FB3_range, canvas_name, particle)
+    if(particle == 'Muon'):
+        text.DrawLatex(0.19,0.87, "0.8 < |y_{#mu#mu}| < 1.2")
+    elif(particle == 'Electron'):
+        text.DrawLatex(0.19,0.87, "0.8 < |y_{ee}| < 1.2")    
+        
     
-    pad1.Draw() 
-       
+    pad4.cd()
+    A_FB4_range = A_FB.ProjectionX("Range4", 4,4, "ED")
+    AFB_Style(A_FB4_range, canvas_name, particle)
+    if(particle == 'Muon'):
+        text.DrawLatex(0.19,0.87, "1.2 < |y_{#mu#mu}| < 1.6")
+    elif(particle == 'Electron'):
+        text.DrawLatex(0.19,0.87, "1.2 < |y_{ee}| < 1.6")    
+          
+    pad5.cd()
+    A_FB5_range = A_FB.ProjectionX("Range5", 5,5, "ED")
+    AFB_Style(A_FB5_range, canvas_name, particle)
+    if(particle == 'Muon'):
+        text.DrawLatex(0.19,0.87, "1.6 < |y_{#mu#mu}| < 2.0")
+    elif(particle == 'Electron'):
+        text.DrawLatex(0.19,0.87, "1.6 < |y_{ee}| < 2.0")    
+        
+    
+    pad6.cd()
+    A_FB6_range = A_FB.ProjectionX("Range6", 6,6, "ED")
+    AFB_Style(A_FB6_range, canvas_name, particle)
+    if(particle == 'Muon'):
+        text.DrawLatex(0.19,0.87, "2.0 < |y_{#mu#mu}| < 2.4")
+    elif(particle == 'Electron'):
+        text.DrawLatex(0.19,0.87, "2.0 < |y_{ee}| < 2.4")
+         
+    c.Draw()
+    #c.SaveAs("A_fb.pdf")
     return c
 
+def AFB_Style(histo, canvas_name, particle):
+    
+    text = ROOT.TLatex()
+    text.SetNDC()
+    text.SetTextAlign(13);
+    text.SetTextFont(62)
+    text.SetTextSize(0.05)
+    text.DrawLatex(0.19, 0.89, "CMS")
+    text.SetTextFont(42)
+    text.DrawLatex(0.19+0.12, 0.89, "Open Data")
+
+    histo.SetMaximum(1.4)
+    histo.SetMinimum(-1.4)
+    histo.SetTitle("")
+    
+    if(particle == 'Muon'):
+        text.SetTextSize(0.05)
+        text.DrawLatex(0.55, 0.92, "18.8 fb^{-1} (8 TeV)")
+        histo.GetXaxis().SetTitle("m_{#mu#mu} [GeV]")
         
+    elif(particle == 'Electron'):
+        text.SetTextSize(0.05)
+        text.DrawLatex(0.55, 0.92, "19.6 fb^{-1} (8 TeV)")
+        histo.GetXaxis().SetTitle("m_{ee} [GeV]")     
+        
+        
+    histo.GetXaxis().SetLabelSize(0.07)
+    histo.GetXaxis().SetTitleSize(0.08)
+    histo.GetXaxis().SetTitleOffset(0.5)
+    histo.GetXaxis().SetLabelOffset(-0.03)
+    histo.GetXaxis().ChangeLabel(1,-1,0.)
+    histo.GetXaxis().ChangeLabel(3,-1,0.)
+    histo.GetXaxis().ChangeLabel(5,-1,0.)
+    histo.GetXaxis().ChangeLabel(7,-1,0.)
+    
+       
+    histo.GetYaxis().SetTitle("A_{FB}")  
+    histo.GetYaxis().SetLabelSize(0.07)
+    histo.GetYaxis().SetTitleSize(0.08)
+    histo.GetYaxis().CenterTitle()
+    histo.GetYaxis().SetTitleOffset(1)
+    
+      
+    
+    return histo
+    
+
+
