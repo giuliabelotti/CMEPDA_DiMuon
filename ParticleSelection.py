@@ -53,12 +53,15 @@ def MuCandidates():
 def ElectronCandidates():
     """ Selection of good Electron for the analysis
     """
-    df_e = df_data_el.Filter("nElectron == 2", "Events with exactly two electrons")
-    df_e = df_e.Filter("Electron_pt[0] > 30 || Electron_pt[1] > 30", "Trigger")
-    df_e = df_e.Filter("Electron_charge[0] != Electron_charge[1]", "Electrons with opposite charge")
+   
+    df_e = df_data_el.Filter("Electron_pt[0] > 30 || Electron_pt[1] > 30", "Trigger")
+   
     df_e = df_e.Filter("(Electron_pt[0] > 30 && Electron_pt[1] > 20) || (Electron_pt[1] > 30 && Electron_pt[0] > 20)  ", "pT Cuts")
-    df_e = df_e.Filter("abs(Electron_eta[0]) < 2.4 && abs(Electron_eta[1]) < 2.4","Eta cuts")
     df_e = df_e.Filter("Electron_pfRelIso03_all[0] < 0.15*Electron_pt[0] && Electron_pfRelIso03_all[1] < 0.15*Electron_pt[1] ","Require good isolation")
+    df_e = df_e.Filter("abs(Electron_eta[0]) < 2.4 && abs(Electron_eta[1]) < 2.4","Eta cuts")
+    
+    df_e = df_e.Filter("nElectron == 2", "Events with exactly two electrons")
+    df_e = df_e.Filter("Electron_charge[0] != Electron_charge[1]", "Electrons with opposite charge")
     
     print("Good Electrons have been selected")
     
