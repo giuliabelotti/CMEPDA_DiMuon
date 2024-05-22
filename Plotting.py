@@ -266,17 +266,6 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
     ratio.Draw("PESAME")
     ROOT.SetOwnership(ratio, 0)   
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
     
 
