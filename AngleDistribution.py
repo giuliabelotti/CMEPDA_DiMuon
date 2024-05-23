@@ -22,8 +22,8 @@ def AngleDistribution(file_name, Tree_name, particle):
   
     
     if(particle == 'Muon'):
-        df = df.Define("p1","Vector(Muon_pt[0], Muon_eta[0], Muon_phi[0], Muon_mass[0])")
-        df = df.Define("p2","Vector(Muon_pt[1], Muon_eta[1], Muon_phi[1], Muon_mass[1])")
+        df = df.Define("p1","Vector(GoodMuon_pt[0], GoodMuon_eta[0], GoodMuon_phi[0], GoodMuon_mass[0])")
+        df = df.Define("p2","Vector(GoodMuon_pt[1], GoodMuon_eta[1], GoodMuon_phi[1], GoodMuon_mass[1])")
         df = df.Define("y", "Rapidity(p1,p2)")   
         df = df.Define("pZ", "pz(p1,p2)")
         df = df.Define("P1p", "P1p(p1)")
@@ -36,8 +36,8 @@ def AngleDistribution(file_name, Tree_name, particle):
         
     
     elif(particle == 'Electron'):
-        df = df.Define("p1","Vector(Electron_pt[0], Electron_eta[0], Electron_phi[0], Electron_mass[0])")
-        df = df.Define("p2","Vector(Electron_pt[1], Electron_eta[1], Electron_phi[1], Electron_mass[1])") 
+        df = df.Define("p1","Vector(GoodElectron_pt[0], GoodElectron_eta[0], GoodElectron_phi[0], GoodElectron_mass[0])")
+        df = df.Define("p2","Vector(GoodElectron_pt[1], GoodElectron_eta[1], GoodElectron_phi[1], GoodElectron_mass[1])") 
         df = df.Define("y", "Rapidity(p1,p2)")    
         df = df.Define("pZ", "pz(p1,p2)")
         df = df.Define("P1p", "P1p(p1)")
