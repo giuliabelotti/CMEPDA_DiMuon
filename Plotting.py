@@ -16,8 +16,9 @@ def PlottingMass(histo, histoMC, canvas_name, particle):
                 The name of the particle
                 
         Returns:
-            A Canvas    
+            The Canvas    
     """
+    
     ROOT.gStyle.SetOptStat(0)
     ROOT.gStyle.SetTextFont(42)
     c = ROOT.TCanvas(canvas_name, "", 800, 700)
@@ -86,8 +87,9 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
                 The name of the particle
                 
         Returns:
-            A Canvas    
+            The Canvas    
     """
+    
     ROOT.gStyle.SetOptStat(0)
     ROOT.gStyle.SetTextFont(42)
     c = ROOT.TCanvas(canvas_name, "", 800, 700)
@@ -97,9 +99,7 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
     upper_pad.Draw()
     lower_pad.Draw()
     
-    upper_pad.cd()     
-    #histoMC.SetMinimum(0)
-    #histoMC.SetMaximum(1e6)    
+    upper_pad.cd()        
     histoMC.GetYaxis().SetTitle("Events/0.05")
     
     histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) 
@@ -162,8 +162,11 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
                 Histogram's legend
             ratio : TH1D
                 Ratio histogram      
-                
+        
+        Returns:
+            None         
     """
+    
     ROOT.gStyle.SetOptStat(0)
     ROOT.gStyle.SetTextFont(42)
     lower_pad.SetBottomMargin(0.3)
@@ -186,23 +189,21 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
         
     if((canvas_name == 'ElMassDistribution1') or (canvas_name == 'ElMassDistribution2') or (canvas_name == 'ElMassDistribution3')):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(1e6)
-        
+        histoMC.SetMaximum(1e6)        
     
     if((canvas_name == 'MuAngleDistribution1') or (canvas_name == 'MuAngleDistribution2')):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(4e4)    
+        histoMC.SetMaximum(6e4)    
     if(canvas_name == 'MuAngleDistribution3'):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(1e4)
+        histoMC.SetMaximum(4.5e4)
         
     if((canvas_name == 'ElAngleDistribution1') or (canvas_name == 'ElAngleDistribution2')):
         histoMC.SetMinimum(10)
         histoMC.SetMaximum(4e4)    
     if(canvas_name == 'ElAngleDistribution3'):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(4e4)    
-        
+        histoMC.SetMaximum(4e4)            
    
     legend.SetTextFont(42)
     legend.SetFillStyle(0)
@@ -246,8 +247,7 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
         if((canvas_name == 'ElMassDistribution3') or (canvas_name == 'ElAngleDistribution3')):
             text.SetTextSize(0.03)
             text.DrawLatex(0.15,0.80, "1.6 < |y_{ee}| < 2.0")    
-    
-    
+        
     lower_pad.cd()
     lower_pad.SetGridy()
     lower_pad.SetTicks()
