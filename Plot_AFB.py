@@ -4,6 +4,20 @@ import numpy as np
 import A_FB
 
 def Plot(A_FB, canvas_name, particle):
+    """ Function to plot the mass distribution 
+
+        Parameters:
+            A_FB : TH2D 
+                Histogram for the forward-backward asymmetry 
+            canvas_name : string
+                The name of the Canvas
+            particle : string
+                The name of the particle
+                
+        Returns:
+            The Canvas    
+    """
+
 
     ROOT.gStyle.SetOptStat(0)
     ROOT.gStyle.SetTextFont(42)
@@ -114,6 +128,20 @@ def Plot(A_FB, canvas_name, particle):
     return c
 
 def AFB_Style(histo, canvas_name, particle):
+    """ Plotting utilities for the forward-backward asymmetry
+    
+        Parameters:
+            histo : TH2D 
+                Histogram for the forward-backward asymmetry 
+            canvas_name : string
+                The name of the Canvas
+            particle : string
+                The name of the particle
+                
+        Returns:
+            The modified histogram 
+
+    """
     
     text = ROOT.TLatex()
     text.SetNDC()
@@ -138,7 +166,6 @@ def AFB_Style(histo, canvas_name, particle):
         text.DrawLatex(0.55, 0.92, "19.6 fb^{-1} (8 TeV)")
         histo.GetXaxis().SetTitle("m_{ee} [GeV]")     
         
-        
     histo.GetXaxis().SetLabelSize(0.07)
     histo.GetXaxis().SetTitleSize(0.08)
     histo.GetXaxis().SetTitleOffset(0.5)
@@ -154,9 +181,7 @@ def AFB_Style(histo, canvas_name, particle):
     histo.GetYaxis().SetTitleSize(0.08)
     histo.GetYaxis().CenterTitle()
     histo.GetYaxis().SetTitleOffset(1)
-    
       
-    
     return histo
     
 
