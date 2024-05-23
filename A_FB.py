@@ -15,7 +15,7 @@ def Asymmetry(file_name, Tree_name, particle):
                 The name of the particle 
                 
         Returns:
-            Six histograms, one for each rapidity region    
+            An histogram 2D, that represents the asymmetry forward-backward    
     """
        
     df = ROOT.RDataFrame(Tree_name, file_name)
