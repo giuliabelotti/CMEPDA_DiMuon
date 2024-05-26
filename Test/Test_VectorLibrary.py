@@ -47,7 +47,7 @@ class TestVectorLibrary(unittest.TestCase):
         H = (0.5*0.1*(1-3*cos**2))
         
         self.assertAlmostEqual(H, ROOT.h(cos),3)
-        self.assertAlmostEqual((0.5*(cos**2)/(((1+(cos**2)+(0.5*0.1*(1-3*cos**2)))**3))), ROOT.wD(cos,(0.5*0.1*(1-3*cos**2))))
+        self.assertAlmostEqual((0.5*(cos**2)/(((1+(cos**2)+(0.5*0.1*(1-3*cos**2)))**3))), ROOT.wD(cos,(0.5*0.1*(1-3*cos**2))),3)
         self.assertAlmostEqual((0.5*np.abs(cos)/(((1+(cos**2)+(0.5*0.1*(1-3*cos**2)))**2))), ROOT.wN(cos,(0.5*0.1*(1-3*cos**2))),3)
         
         
