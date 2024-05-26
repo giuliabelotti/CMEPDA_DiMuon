@@ -200,10 +200,10 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
         
     if((canvas_name == 'ElAngleDistribution1') or (canvas_name == 'ElAngleDistribution2')):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(4e4)    
+        histoMC.SetMaximum(6e4)    
     if(canvas_name == 'ElAngleDistribution3'):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(4e4)            
+        histoMC.SetMaximum(5e4)            
    
     legend.SetTextFont(42)
     legend.SetFillStyle(0)
@@ -223,7 +223,7 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
     
     if(particle == 'Muon'):
         text.SetTextSize(0.030)
-        text.DrawLatex(0.73, 0.940, "18.8 fb^{-1} (8 TeV)")
+        text.DrawLatex(0.73, 0.940, "41.6 fb^{-1} (13 TeV)")
         if((canvas_name == 'MuMassDistribution1') or (canvas_name == 'MuAngleDistribution1')):
             text.SetTextSize(0.03)
             text.DrawLatex(0.15,0.80, "0.0 < |y_{#mu#mu}| < 0.4") 
@@ -237,7 +237,7 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
             
     if(particle == 'Electron'):
         text.SetTextSize(0.030)
-        text.DrawLatex(0.72, 0.940, "19.6 fb^{-1} (8 TeV)")
+        text.DrawLatex(0.72, 0.940, "41.6 fb^{-1} (13 TeV)")
         if((canvas_name == 'ElMassDistribution1') or (canvas_name == 'ElAngleDistribution1')):
             text.SetTextSize(0.03)
             text.DrawLatex(0.15,0.80, "0.0 < |y_{ee}| < 0.4") 
