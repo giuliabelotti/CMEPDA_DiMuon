@@ -1,6 +1,7 @@
-
+import logging
 import argparse
 import ROOT
+import ImportFile
 import ParticleSelection
 import MassDistribution
 import AngleDistribution
@@ -19,13 +20,19 @@ if __name__ == '__main__':
     parser.add_argument('--MuonA_FB', help='Muon Forward-Backward Asymmetry', action = "store_true")
     parser.add_argument('--ElectronA_FB', help='Electron Forward-Backward Asymmetry', action = "store_true")
     args = parser.parse_args()
+    logging.basicConfig(level = logging.INFO)
     
+    df_data_mu, df_data_el, df_MC = ImportFile.CreateDF()
     
     if(args.SelectionMu == True):
-        ParticleSelection.MuCandidates()
+        logging.info('Imported the right RDataFrame')
+        ParticleSelection.MuCandidates(df_data_mu, "Data")
+        ParticleSelection.MuCandidates(df_MC, "MC")
         
     if(args.SelectionEl == True):
-        ParticleSelection.ElectronCandidates()    
+        logging.info('Imported the right RDataFrame')
+        ParticleSelection.ElectronCandidates(df_data_el, "Data")
+        ParticleSelection.ElectronCandidates(df_MC, "MC")    
     
     if(args.DiMuonMass == True):   
         h_mu_0_y_04, h_mu_08_y_12, h_mu_16_y_2 = MassDistribution.MassDistribution('data/GoodMu.root', 'TreeMu', 'Muon')
