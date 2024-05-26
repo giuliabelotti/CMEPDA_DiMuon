@@ -1,7 +1,5 @@
-
 #ifndef VECTOR_LIBRARY_H
 #define VECTOR_LIBRARY_H
-
 
 #include <Math/Vector4D.h>
 using namespace ROOT::Math;
@@ -155,9 +153,9 @@ float CosTheta(float invMass, float pz, float P1p, float P2p, float P1m, float P
         Returns:
             The CosTheta
     */
-    return (2*(P1p*P2m - P1m*P2p)*pz)/(sqrt(pow(invMass,2)*(pow(invMass,2) + pow(SystempT,2)))*abs(pz));
+    return ((2*(P1p*P2m - P1m*P2p)*pz)/(sqrt(pow(invMass,2)*(pow(invMass,2) + pow(SystempT,2)))*abs(pz)));
 }             
-//#############################################
+
 float h(float CosTheta){
     /*!
         Parameters:
@@ -195,20 +193,5 @@ float wN(float CosTheta, float h){
     return (0.5*abs(CosTheta)/(pow((1+pow(CosTheta,2)+h),2)));
 }              
 
-
-
-
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
 
