@@ -19,8 +19,7 @@ def AngleDistribution(file_name, Tree_name, particle):
     
     df = ROOT.RDataFrame(Tree_name, file_name)
     ROOT.gInterpreter.ProcessLine('#include "Vector_Library.h"')
-  
-    
+      
     if(particle == 'Muon'):
         df = df.Define("p1","Vector(GoodMuon_pt[0], GoodMuon_eta[0], GoodMuon_phi[0], GoodMuon_mass[0])")
         df = df.Define("p2","Vector(GoodMuon_pt[1], GoodMuon_eta[1], GoodMuon_phi[1], GoodMuon_mass[1])")
@@ -34,10 +33,14 @@ def AngleDistribution(file_name, Tree_name, particle):
         df = df.Define("SystempT", "SystempT(p1,p2)")
         df = df.Define("CosThetaMu", "CosTheta(SystemMass, pZ, P1p, P2p, P1m, P2m, SystempT)")
         
-    
+        '''
+        df = df.Define("P1_mass", "p1.M()")
+        a = df.Display(["p1", "p2"], 10)
+        a.Print()  
+         ''' 
     elif(particle == 'Electron'):
-        df = df.Define("p1","Vector(GoodElectron_pt[0], GoodElectron_eta[0], GoodElectron_phi[0], GoodElectron_mass[0])")
-        df = df.Define("p2","Vector(GoodElectron_pt[1], GoodElectron_eta[1], GoodElectron_phi[1], GoodElectron_mass[1])") 
+        df = df.Define("p1","Vector(GoodElectron_pt[0], GoodElectron_eta[0], GoodElectron_phi[0], 0.00051)")
+        df = df.Define("p2","Vector(GoodElectron_pt[1], GoodElectron_eta[1], GoodElectron_phi[1], 0.00051)") 
         df = df.Define("y", "Rapidity(p1,p2)")    
         df = df.Define("pZ", "pz(p1,p2)")
         df = df.Define("P1p", "P1p(p1)")
@@ -47,7 +50,11 @@ def AngleDistribution(file_name, Tree_name, particle):
         df = df.Define("SystemMass", "invMass(p1,p2)")
         df = df.Define("SystempT", "SystempT(p1,p2)")
         df = df.Define("CosThetaEl", "CosTheta(SystemMass, pZ, P1p, P2p, P1m, P2m, SystempT)")
-        
+        '''
+        df = df.Define("P1_mass", "p1.M()")
+        a = df.Display(["p1", "p2"], 10)
+        a.Print()  
+        '''
     df_0_y_04 = df.Filter("abs(y)>0 && abs(y)<0.4", "Range Rapidity")
     df_08_y_12 = df.Filter("abs(y)>0.8 && abs(y)<1.2", "Range Rapidity")
     df_16_y_2 = df.Filter("abs(y)>1.6 && abs(y)<2.0", "Range Rapidity") 
@@ -56,8 +63,7 @@ def AngleDistribution(file_name, Tree_name, particle):
         h_0_y_04 = df_0_y_04.Histo1D(("Angle_Mu1","Angle distribution",40,-1,1),"CosThetaMu")
         h_08_y_12 = df_08_y_12.Histo1D(("Angle_Mu2","Angle distribution",40,-1,1), "CosThetaMu")
         h_16_y_2 = df_16_y_2.Histo1D(("Angle_Mu3","Angle distribution",40,-1,1),"CosThetaMu")
-   
-    
+       
     elif(particle == 'Electron'):
         h_0_y_04 = df_0_y_04.Histo1D(("Angle_El1","Angle distribution",40,-1,1),"CosThetaEl")
         h_08_y_12 = df_08_y_12.Histo1D(("Angle_El2","Angle distribution",40,-1,1),"CosThetaEl")
@@ -68,9 +74,4 @@ def AngleDistribution(file_name, Tree_name, particle):
     
     
     
-    
-    
-    
-    
-
 
