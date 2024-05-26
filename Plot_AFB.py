@@ -158,12 +158,12 @@ def AFB_Style(histo, canvas_name, particle):
     
     if(particle == 'Muon'):
         text.SetTextSize(0.05)
-        text.DrawLatex(0.55, 0.92, "18.8 fb^{-1} (8 TeV)")
+        text.DrawLatex(0.55, 0.92, "41.6 fb^{-1} (13 TeV)")
         histo.GetXaxis().SetTitle("m_{#mu#mu} [GeV]")
         
     elif(particle == 'Electron'):
         text.SetTextSize(0.05)
-        text.DrawLatex(0.55, 0.92, "19.6 fb^{-1} (8 TeV)")
+        text.DrawLatex(0.55, 0.92, "41.6 fb^{-1} (13 TeV)")
         histo.GetXaxis().SetTitle("m_{ee} [GeV]")     
         
     histo.GetXaxis().SetLabelSize(0.07)
