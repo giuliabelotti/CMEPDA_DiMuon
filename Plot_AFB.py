@@ -4,7 +4,7 @@ import numpy as np
 import A_FB
 
 def Plot(A_FB, canvas_name, particle):
-    """ Function to plot the mass distribution 
+    """ Function to plot Forward-backward asymmetry 
 
         Parameters:
             A_FB : TH2D 
