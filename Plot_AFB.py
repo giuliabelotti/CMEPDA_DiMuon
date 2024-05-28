@@ -174,8 +174,7 @@ def AFB_Style(histo, canvas_name, particle):
     histo.GetXaxis().ChangeLabel(3,-1,0.)
     histo.GetXaxis().ChangeLabel(5,-1,0.)
     histo.GetXaxis().ChangeLabel(7,-1,0.)
-    
-       
+           
     histo.GetYaxis().SetTitle("A_{FB}")  
     histo.GetYaxis().SetLabelSize(0.07)
     histo.GetYaxis().SetTitleSize(0.08)
