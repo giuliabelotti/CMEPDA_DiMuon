@@ -61,14 +61,12 @@ class TestDistribution(unittest.TestCase):
         self.assertTrue(h_mu_0_y_04_a.GetMarkerSize() == 1.0)
         self.assertTrue(h_mu_0_y_04_a.GetMarkerColor() == ROOT.kBlack)
         self.assertTrue(h_mu_0_y_04_a.GetLineColor() == ROOT.kBlack)
-
         
         h_e_0_y_04_a, h_e_08_y_12_a, h_e_16_y_2_a = AngleDistribution('data/GoodElectron.root', 'TreeEl', 'Electron')
         h_e_0_y_04_MC_a, h_e_08_y_12_MC_a, h_e_16_y_2_MC_a = AngleDistribution('data/GoodElectronMC.root', 'TreeElMC', 'Electron')        
         self.assertIs(type(h_e_0_y_04_a.GetValue()), ROOT.TH1D)               
         self.assertIs(type(h_e_0_y_04_MC_a.GetValue()), ROOT.TH1D)
-        
-        
+                
         canvasAngle_el = PlottingAngle(h_e_0_y_04_a, h_e_0_y_04_MC_a,  "ElAngleDistribution1", "Electron")        
         self.assertTrue(h_e_0_y_04_MC_a.GetMinimum() == 10)
         self.assertTrue(h_e_0_y_04_MC_a.GetMaximum() == 6e4)
