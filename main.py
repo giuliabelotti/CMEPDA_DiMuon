@@ -63,7 +63,6 @@ if __name__ == '__main__':
         canvasAngle5 = Plotting.PlottingAngle(h_e_08_y_12_a, h_e_08_y_12_MC_a, "ElAngleDistribution2", "Electron")
         canvasAngle6 = Plotting.PlottingAngle(h_e_16_y_2_a, h_e_16_y_2_MC_a, "ElAngleDistribution3", "Electron") 
 
-
      
     if(args.MuonA_FB == True):
         A_FB_Mu = A_FB.Asymmetry('data/GoodMu.root', 'TreeMu', 'Muon')
