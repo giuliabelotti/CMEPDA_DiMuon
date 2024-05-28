@@ -101,7 +101,6 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
     
     upper_pad.cd()        
     histoMC.GetYaxis().SetTitle("Events/0.05")
-    
     histoMC.Scale(histo.GetEntries()/histoMC.GetEntries()) 
     
     histoMC.Draw("HIST")
@@ -169,6 +168,7 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
     
     ROOT.gStyle.SetOptStat(0)
     ROOT.gStyle.SetTextFont(42)
+    
     lower_pad.SetBottomMargin(0.3)
     upper_pad.cd()    
      
@@ -176,7 +176,7 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
     histoMC.GetXaxis().SetLabelSize(0)
     histoMC.SetTitle("")
     histoMC.SetFillColor(ROOT.kOrange-2)
-    
+       
     histoMC.GetYaxis().SetTitleSize(0.04)
     histo.SetMarkerStyle(20)
     histo.SetMarkerSize(1.0)
@@ -193,18 +193,22 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
     
     if((canvas_name == 'MuAngleDistribution1') or (canvas_name == 'MuAngleDistribution2')):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(6e4)    
+        histoMC.SetMaximum(6e4)
+        ROOT.TGaxis.SetMaxDigits(3)    
     if(canvas_name == 'MuAngleDistribution3'):
         histoMC.SetMinimum(10)
         histoMC.SetMaximum(4.5e4)
+        ROOT.TGaxis.SetMaxDigits(3)
         
     if((canvas_name == 'ElAngleDistribution1') or (canvas_name == 'ElAngleDistribution2')):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(6e4)    
+        histoMC.SetMaximum(6e4)
+        ROOT.TGaxis.SetMaxDigits(3)    
     if(canvas_name == 'ElAngleDistribution3'):
         histoMC.SetMinimum(10)
-        histoMC.SetMaximum(5e4)            
-   
+        histoMC.SetMaximum(5e4)
+        ROOT.TGaxis.SetMaxDigits(3)            
+        
     legend.SetTextFont(42)
     legend.SetFillStyle(0)
     legend.SetBorderSize(0)
