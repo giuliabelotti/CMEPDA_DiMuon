@@ -19,6 +19,11 @@ if __name__ == '__main__':
     parser.add_argument('--ElectronAngle', help='Electron angle distribution', action = "store_true")
     parser.add_argument('--MuonA_FB', help='Muon Forward-Backward Asymmetry', action = "store_true")
     parser.add_argument('--ElectronA_FB', help='Electron Forward-Backward Asymmetry', action = "store_true")
+    
+    parser.add_argument('--Muon_Sel', help='Selection global cuts for Muons', nargs='?', default= "Muon_pt>15 && abs(Muon_eta)<2.4 && Muon_dxy<0.2 && Muon_pfRelIso03_all<0.1 && Muon_mediumId>0", type = str, action = "store")
+    
+    parser.add_argument('--Electron_Sel', help='Selection global cuts for Electrons', nargs='?', default= "Electron_pt>20 && abs(Electron_eta)<2.4 && Electron_pfRelIso03_all<0.15 && Electron_cutBased>=3", type = str, action = "store")
+    
     args = parser.parse_args()
     logging.basicConfig(level = logging.INFO)
     
@@ -26,13 +31,13 @@ if __name__ == '__main__':
     
     if(args.SelectionMu == True):
         logging.info('Imported the right RDataFrame')
-        ParticleSelection.MuCandidates(df_data_mu, "Data")
-        ParticleSelection.MuCandidates(df_MC, "MC")
+        ParticleSelection.MuCandidates(df_data_mu, "Data", args.Muon_Sel)
+        ParticleSelection.MuCandidates(df_MC, "MC", args.Muon_Sel)
         
     if(args.SelectionEl == True):
         logging.info('Imported the right RDataFrame')
-        ParticleSelection.ElectronCandidates(df_data_el, "Data")
-        ParticleSelection.ElectronCandidates(df_MC, "MC")    
+        ParticleSelection.ElectronCandidates(df_data_el, "Data", args.Electron_Sel)
+        ParticleSelection.ElectronCandidates(df_MC, "MC", args.Electron_Sel)    
     
     if(args.DiMuonMass == True):   
         h_mu_0_y_04, h_mu_08_y_12, h_mu_16_y_2 = MassDistribution.MassDistribution('data/GoodMu.root', 'TreeMu', 'Muon')
