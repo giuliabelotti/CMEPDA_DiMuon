@@ -6,6 +6,11 @@ import numpy as np
 ROOT.gInterpreter.ProcessLine('#include "Vector_Library.h"')
 
 class TestVectorLibrary(unittest.TestCase):
+
+    """
+        Class to test the library VectorLibrary.h
+        
+    """
     
     def test_Vector_Library(self):     
         
