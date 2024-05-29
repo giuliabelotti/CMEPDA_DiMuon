@@ -1,11 +1,10 @@
-
 import ROOT
 import logging
 import os
 import ImportFile
 
 
-def MuCandidates(dataframe, name_dataset):
+def MuCandidates(dataframe, name_dataset, Muon_Sel, nevents=None):
     """ Selection of good Mu for the analysis
     
         Parameters:
@@ -14,43 +13,26 @@ def MuCandidates(dataframe, name_dataset):
             name_dataset : string
                 Name of the dataset. 
                 Possible value: Data or MC 
-                
+            Muon_Sel : string
+                Selection global cuts for Muons
+                    
         Returns:
             None   
     """
-    df_mu = dataframe.Filter("nMuon >= 2", "Events with at least two muons")
-    df_mu = df_mu.Define("Trigger", "Muon_pt>15 && Muon_highPtId==2")
-    df_mu = df_mu.Define("NonZero_Trigger", "Nonzero(Trigger)")
-    df_mu = df_mu.Filter("NonZero_Trigger.size()>=2")
     
-    df_mu = df_mu.Define("Sel_pt", "Muon_pt>25")
-    df_mu = df_mu.Define("NonZero_Sel_pt", "Nonzero(Sel_pt)")
-    df_mu = df_mu.Filter("NonZero_Sel_pt.size()>=1")
-    
-    df_mu = df_mu.Define("Sel_eta", "abs(Muon_eta)<2.4 && Trigger")
-    df_mu = df_mu.Define("NonZero_Sel_eta", "Nonzero(Sel_eta)")
-    df_mu = df_mu.Filter("NonZero_Sel_eta.size()>=2")
-    
-    df_mu = df_mu.Define("Sel_dxy", "Muon_dxy<0.2 && Sel_eta")
-    df_mu = df_mu.Define("NonZero_Sel_dxy", "Nonzero(Sel_dxy)")
-    df_mu = df_mu.Filter("NonZero_Sel_dxy.size()>=2")
-    
-    df_mu = df_mu.Define("Sel_isolation", "Muon_pfRelIso03_all < 0.1*Muon_pt && ((Muon_puppiIsoId==2) || (Muon_puppiIsoId==3)) && Sel_dxy")
-    df_mu = df_mu.Define("NonZero_Sel_isolation", "Nonzero(Sel_isolation)")
-    df_mu = df_mu.Filter("NonZero_Sel_isolation.size()==2")
-    
-    df_mu = df_mu.Filter("Muon_charge[NonZero_Sel_isolation[0]] != Muon_charge[NonZero_Sel_isolation[1]]", "Muons with opposite charge")
-    
-    df_mu = df_mu.Filter("Muon_pt[NonZero_Sel_isolation[0]] > 25 || Muon_pt[NonZero_Sel_isolation[1]] > 25", "Pt") 
+    if (nevents>0):
+        dataframe = dataframe.Range(nevents)
         
-    df_mu = df_mu.Define("GoodMuon_pt", "ROOT::VecOps::RVec<double>({Muon_pt[NonZero_Sel_isolation[0]], Muon_pt[NonZero_Sel_isolation[1]]})")
+    df_mu = dataframe.Filter("nMuon >= 2", "Events with at least two muons")
+    df_mu = df_mu.Define("GoodMuon_pt", f"Muon_pt[{Muon_Sel}]")
+    df_mu = df_mu.Define("GoodMuon_eta", f"Muon_eta[{Muon_Sel}]")
+    df_mu = df_mu.Define("GoodMuon_phi", f"Muon_phi[{Muon_Sel}]")
+    df_mu = df_mu.Define("GoodMuon_mass", f"Muon_mass[{Muon_Sel}]")
     
-    df_mu = df_mu.Define("GoodMuon_eta", "ROOT::VecOps::RVec<double>({Muon_eta[NonZero_Sel_isolation[0]], Muon_eta[NonZero_Sel_isolation[1]]})")
+    df_mu = df_mu.Filter("GoodMuon_pt.size() == 2") 
+    df_mu = df_mu.Filter("GoodMuon_pt[0] > 25")
+    df_mu = df_mu.Filter("Muon_charge[0] != Muon_charge[1]")
     
-    df_mu = df_mu.Define("GoodMuon_phi", "ROOT::VecOps::RVec<double>({Muon_phi[NonZero_Sel_isolation[0]], Muon_phi[NonZero_Sel_isolation[1]]})")
-     
-    df_mu = df_mu.Define("GoodMuon_mass", "ROOT::VecOps::RVec<double>({Muon_mass[NonZero_Sel_isolation[0]], Muon_mass[NonZero_Sel_isolation[1]]})")
-      
     logging.info('Good Muons have been selected')   
    
     outCols = ROOT.vector("std::string")()
@@ -68,10 +50,15 @@ def MuCandidates(dataframe, name_dataset):
         
     if(name_dataset == "MC"):
         df_mu = df_mu.Snapshot("TreeMuMC", "data/GoodMuMC.root", outCols)
-        logging.info('Created a file GoodMuMC.root with Muons selected from MC')      
- 
+        logging.info('Created a file GoodMuMC.root with Muons selected from MC')
+        
+    if(name_dataset == "TEST"):
+        df_mu = df_mu.Snapshot("TreeMuTest", "Test/GoodMuTest.root", outCols)
+        logging.info('Created a file GoodMuTest.root with Muons selected only for Test')     
+    
+    
 
-def ElectronCandidates(dataframe, name_dataset):
+def ElectronCandidates(dataframe, name_dataset, Electron_Sel, nevents=None):
     """ Selection of good Electron for the analysis
     
         Parameters:
@@ -80,43 +67,25 @@ def ElectronCandidates(dataframe, name_dataset):
             name_dataset : string
                 Name of the dataset. 
                 Possible value: Data or MC 
-                
+            Electron_Sel : string
+                Selection global cuts for Electrons
+                    
         Returns:
             None
-    """ 
+    """
     
-    df_el = dataframe.Filter("nElectron >= 2", "Events with at least two Electrons")
-    df_el = df_el.Define("Trigger", "Electron_pt>20 && (Electron_cutBased == 3 || Electron_cutBased == 4) ")
-    df_el = df_el.Define("NonZero_Trigger", "Nonzero(Trigger)")
-    df_el = df_el.Filter("NonZero_Trigger.size()>=2")
+    if (nevents>0):
+        dataframe = dataframe.Range(nevents) 
     
-    df_el = df_el.Define("Sel_pt", "Electron_pt>30")
-    df_el = df_el.Define("NonZero_Sel_pt", "Nonzero(Sel_pt)")
-    df_el = df_el.Filter("NonZero_Sel_pt.size()>=1")
+    df_el = dataframe.Filter("nElectron >= 2", "Events with at least two electrons")
+    df_el = df_el.Define("GoodElectron_pt", f"Electron_pt[{Electron_Sel}]")
+    df_el = df_el.Define("GoodElectron_eta", f"Electron_eta[{Electron_Sel}]")
+    df_el = df_el.Define("GoodElectron_phi", f"Electron_phi[{Electron_Sel}]")
+    df_el = df_el.Define("GoodElectron_mass", f"Electron_mass[{Electron_Sel}]")
     
-    df_el = df_el.Define("Sel_eta", "abs(Electron_eta)<2.4 && (!(1.44 < abs(Electron_eta)) || !(abs(Electron_eta) < 1.57)) && Trigger")
-    df_el = df_el.Define("NonZero_Sel_eta", "Nonzero(Sel_eta)")
-    df_el = df_el.Filter("NonZero_Sel_eta.size()>=2")
-    
-    df_el = df_el.Define("Sel_dxy", "Electron_dxy<0.2 && Sel_eta")
-    df_el = df_el.Define("NonZero_Sel_dxy", "Nonzero(Sel_dxy)")
-    df_el = df_el.Filter("NonZero_Sel_dxy.size()>=2")
-         
-    df_el = df_el.Define("Sel_isolation", "Electron_pfRelIso03_all < 0.15*Electron_pt && Sel_dxy")
-    df_el = df_el.Define("NonZero_Sel_isolation", "Nonzero(Sel_isolation)")
-    df_el = df_el.Filter("NonZero_Sel_isolation.size()==2")
-    
-    df_el = df_el.Filter("Electron_charge[NonZero_Sel_isolation[0]] != Electron_charge[NonZero_Sel_isolation[1]]", "Electrons with opposite charge")
-    
-    df_el = df_el.Filter("Electron_pt[NonZero_Sel_isolation[0]] > 30 || Electron_pt[NonZero_Sel_isolation[1]] > 30", "Pt") 
-   
-    df_el = df_el.Define("GoodElectron_pt", "ROOT::VecOps::RVec<double>({Electron_pt[NonZero_Sel_isolation[0]], Electron_pt[NonZero_Sel_isolation[1]]})")
-    
-    df_el = df_el.Define("GoodElectron_eta", "ROOT::VecOps::RVec<double>({Electron_eta[NonZero_Sel_isolation[0]], Electron_eta[NonZero_Sel_isolation[1]]})")
-    
-    df_el = df_el.Define("GoodElectron_phi", "ROOT::VecOps::RVec<double>({Electron_phi[NonZero_Sel_isolation[0]], Electron_phi[NonZero_Sel_isolation[1]]})")
-     
-    df_el = df_el.Define("GoodElectron_mass", "ROOT::VecOps::RVec<double>({Electron_mass[NonZero_Sel_isolation[0]], Electron_mass[NonZero_Sel_isolation[1]]})")
+    df_el = df_el.Filter("GoodElectron_pt.size() == 2") 
+    df_el = df_el.Filter("GoodElectron_pt[0] > 30")
+    df_el = df_el.Filter("Electron_charge[0] != Electron_charge[1]")
     
     logging.info('Good Electrons have been selected')  
     
@@ -126,9 +95,7 @@ def ElectronCandidates(dataframe, name_dataset):
     outCols.push_back("GoodElectron_eta")
     outCols.push_back("GoodElectron_phi")
     outCols.push_back("GoodElectron_mass")
-    
-    
-        
+            
     if(name_dataset == "Data"):
         if not os.path.exists("data"):
             os.makedirs("data") 
@@ -136,7 +103,11 @@ def ElectronCandidates(dataframe, name_dataset):
         logging.info('Created a file GoodElectron.root with the Electrons selected')
         
     if(name_dataset == "MC"):
-         df_el = df_el.Snapshot("TreeElMC", "data/GoodElectronMC.root", outCols)
-         logging.info('Created a file GoodElectronMC.root with the Electrons selected from MC')
+        df_el = df_el.Snapshot("TreeElMC", "data/GoodElectronMC.root", outCols)
+        logging.info('Created a file GoodElectronMC.root with the Electrons selected from MC')
          
-    
+    if(name_dataset == "TEST"):
+        df_el = df_el.Snapshot("TreeElTest", "Test/GoodElTest.root", outCols)
+        logging.info('Created a file GoodElTest.root with Electron selected only for Test')     
+         
+
