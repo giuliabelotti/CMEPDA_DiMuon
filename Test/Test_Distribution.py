@@ -8,6 +8,10 @@ from Plotting import PlottingMass
 from Plotting import PlottingAngle
 
 class TestDistribution(unittest.TestCase):
+    """
+        Class to test the plotting
+        
+    """
     
     def test_MassDistribution(self):
     
