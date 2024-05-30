@@ -118,7 +118,9 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
     ratio.Sumw2()
     ratio.Divide(histoMC.Clone())
     ratio.SetMinimum(0.3)
-    ratio.SetMaximum(1.8)
+    ratio.SetMaximum(2.5)
+    if((canvas_name == "MuAngleDistribution3") or (canvas_name == "ElAngleDistribution3")):
+         ratio.SetMaximum(3)
 
     if particle == "Muon":
         ratio.GetXaxis().SetTitle("cos#theta")
