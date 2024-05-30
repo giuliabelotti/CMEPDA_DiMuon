@@ -40,8 +40,16 @@ if __name__ == '__main__':
         h_mu_0_y_04, h_mu_08_y_12, h_mu_16_y_2 = MassDistribution.MassDistribution('data/GoodMu.root', 'TreeMu', 'Muon')
         h_mu_0_y_04_MC, h_mu_08_y_12_MC, h_mu_16_y_2_MC = MassDistribution.MassDistribution('data/GoodMuMC.root', 'TreeMuMC', 'Muon')
         canvas1 = Plotting.PlottingMass(h_mu_0_y_04, h_mu_0_y_04_MC, "MuMassDistribution1", "Muon")
+        canvas1.Update()
+        canvas1.SaveAs("Plot/MuMassDistribution1.png")
+
         canvas2 = Plotting.PlottingMass(h_mu_08_y_12, h_mu_08_y_12_MC, "MuMassDistribution2", "Muon")
+        canvas2.Update()
+        canvas2.SaveAs("Plot/MuMassDistribution2.png")
+
         canvas3 = Plotting.PlottingMass(h_mu_16_y_2, h_mu_16_y_2_MC, "MuMassDistribution3", "Muon")
+        canvas3.Update()
+        canvas3.SaveAs("Plot/MuMassDistribution3.png")
 
     if args.DiElectronMass is True:     
         h_e_0_y_04, h_e_08_y_12, h_e_16_y_2 = MassDistribution.MassDistribution('data/GoodElectron.root', 'TreeEl', 'Electron')
