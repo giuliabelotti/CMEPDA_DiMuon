@@ -1,6 +1,3 @@
 # CMEPDA_DiMuon
 
-L’obiettivo di questa analisi è riprodurre i plot presentati dalla collaborazione
-CMS sull’asimmetria forward-backward degli eventi Drell Yan, in cui
-l’annichilazione quark-antiquark produce una coppia di leptoni, attraverso lo
-scambio di un bosone Z (DOI: 10.1140/epjc/s10052-018-6148-7)
+L’obiettivo di questa analisi è riprodurre l’asimmetria forward-backward degli eventi di Drell Yan in collisione pp utilizzando i CMS Open Data a 13 TeV, sulla base dei risultati ottenuti dalla collaborazione CMS e presentati in [questo](https://arxiv.org/abs/1806.00863) articolo.
