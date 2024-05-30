@@ -3,7 +3,7 @@ import unittest
 import ROOT
 import numpy as np
 
-ROOT.gInterpreter.ProcessLine('#include "Vector_Library.h"')
+ROOT.gInterpreter.ProcessLine('#include "src/Vector_Library.h"')
 
 class TestVectorLibrary(unittest.TestCase):
 
