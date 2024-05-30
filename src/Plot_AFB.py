@@ -19,7 +19,7 @@ def Plot(A_FB, canvas_name, particle):
 
     ROOT.gStyle.SetOptStat(0)
     ROOT.gStyle.SetTextFont(42)
-    c = ROOT.TCanvas(canvas_name, "", 800, 700)
+    c = ROOT.TCanvas(canvas_name, "", 2000, 1000)
 
     pad1 = ROOT.TPad("pad1", "pad1", 0.03, 0., 0.18, 0.9)
     pad2 = ROOT.TPad("pad2", "pad2", 0.19, 0., 0.34, 0.9)
