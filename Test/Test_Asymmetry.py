@@ -1,7 +1,7 @@
 import unittest
 import ROOT
 
-from A_FB import Asymmetry
+from src.A_FB import Asymmetry
 
 class TestAsymmetry(unittest.TestCase):
     """
