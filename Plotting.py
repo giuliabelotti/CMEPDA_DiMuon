@@ -68,7 +68,6 @@ def PlottingMass(histo, histoMC, canvas_name, particle):
     CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend, ratio)
 
     return c
-    #c.SaveAs("Prova.pdf")
 
 def PlottingAngle(histo, histoMC, canvas_name, particle):
     """ Function to plot the angle distribution
@@ -135,8 +134,7 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
     CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend, ratio)
 
     return c
-    #c.SaveAs("Prova.pdf")    
-    
+
 def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend, ratio):
     """ Plotting Utilities
 
