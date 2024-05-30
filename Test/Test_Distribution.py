@@ -1,11 +1,11 @@
 import unittest
 import ROOT
 
-from MassDistribution import MassDistribution
-from AngleDistribution import AngleDistribution
+from src.MassDistribution import MassDistribution
+from src.AngleDistribution import AngleDistribution
 
-from Plotting import PlottingMass
-from Plotting import PlottingAngle
+from src.Plotting import PlottingMass
+from src.Plotting import PlottingAngle
 
 class TestDistribution(unittest.TestCase):
     """
