@@ -1,13 +1,13 @@
 import logging
 import os
 import argparse
-import ImportFile
-import ParticleSelection
-import MassDistribution
-import AngleDistribution
-import A_FB
-import Plotting
-import Plot_AFB
+from src import ImportFile
+from src import ParticleSelection
+from src import MassDistribution
+from src import AngleDistribution
+from src import A_FB
+from src import Plotting
+from src import Plot_AFB
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
