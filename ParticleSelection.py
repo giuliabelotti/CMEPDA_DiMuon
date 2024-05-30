@@ -48,6 +48,7 @@ def MuCandidates(dataframe, name_dataset, Muon_Sel, nevents=None):
     if name_dataset == "Data":
         if not os.path.exists("data"):
             os.makedirs("data")
+            logging.info('Created the folder data')
         df_mu = df_mu.Snapshot("TreeMu", "data/GoodMu.root", outCols)
         logging.info('Created a file GoodMu.root with Muons selected')
 
@@ -104,6 +105,7 @@ def ElectronCandidates(dataframe, name_dataset, Electron_Sel, nevents=None):
     if name_dataset == "Data":
         if not os.path.exists("data"):
             os.makedirs("data")
+            logging.info('Created the folder data')
         df_el = df_el.Snapshot("TreeEl", "data/GoodElectron.root", outCols)
         logging.info('Created a file GoodElectron.root with the Electrons selected')
 
