@@ -1,8 +1,8 @@
 import unittest
 import ROOT
 import ImportFile
-from ParticleSelection import MuCandidates
-from ParticleSelection import ElectronCandidates
+from src.ParticleSelection import MuCandidates
+from src.ParticleSelection import ElectronCandidates
 
 class TestSelection(unittest.TestCase):
     """
