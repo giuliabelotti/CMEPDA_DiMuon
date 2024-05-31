@@ -35,20 +35,24 @@ optional arguments:
 ## Analysis
 The data are imported from CMS Open Data portal and have to be selected. 
 
-For example, the selection of Muons is done with the command:
+The selection is done adding the optional argument --Selection after the name of the particle choosed. If no specified, the selection is done with the default value of --Muon_Sel and --Electron_Sel, as descripted in the help.
+
+For example, if we wanted to filter muons with the default parameters, we would have to write in the terminal
 ```bash
 python3 main.py "Muon" --Selection
 ```
-If no specified, the selection is done with the default value of --Muon_Sel, as descripted in the help. 
-The outputs are two files ".root" (one for data, and one for MC) in a folder named "data", which contain the "good" particles.
+If we wanted to change some parameters, we would have to write them in a string, after --Selection.
 
-Afterwards, we can choose one of the three analysis. For example, if we would like to see the dimuon mass distribution, we have to type:
-```bash
-python3 main.py "Muon" --Mass
-```
-All the plots are saved in a folder called "Plot" .
+The selection's outputs are two files ".root" (one for data, and one for the MC) in a folder named "data", which contain the "good" particles.
 
+Afterwards, we can choose one of the three possible analysis. All the plots are saved in a folder called "Plot".
 ## Test
+
+All the unittests can be run in the main folder typing:
+```bash
+python3 -m unittest Test/name_of_the_test.py
+```
+
 
 
 
