@@ -49,7 +49,7 @@ The selection's outputs are two files ".root" (one for data, and one for the MC)
 Afterwards, we can choose one of the three possible analysis, typing the corresponding option after the name of the particle. Each analysis can be performed independently from the others.
 Both mass and angle distribution analysis are presented in three differents bins in rapidity, so in output we have three plots. 
 The forward-backward asymmetry is instead presented in six bins in rapidity but the output is a comparative plot. 
-In the folder "Plot" we can find two subfolders called "Muon" and "Electron", where is saved all the plots relative to that channel. 
+In the folder "Plot" we can find two subfolders called "Muon" and "Electron", where are saved all the plots relative to that channel. 
 
 ## Test
 Four unittests are been written for this analysis to test the selection of the particles, the mass and angle distributions, the forward-backward asymmetry and the library VectorLibrary.h. 
