@@ -36,7 +36,7 @@ optional arguments:
 ## Analysis
 The data are imported from [CMS Open Data Portal](https://opendata.cern.ch/) and have to be selected. 
 
-The selection is done adding the optional argument --Selection after the name of the particle choosed. If no specified, the selection is done with the default value of --Muon_Sel and --Electron_Sel, as descripted in the help.
+The selection is done adding the optional argument --Selection after the name of the particle chosed. If no specified, the selection is done with the default value of --Muon_Sel and --Electron_Sel, as descripted in the help.
 
 For example, if we wanted to filter muons with the default parameters, we would have to write in the terminal
 ```bash
