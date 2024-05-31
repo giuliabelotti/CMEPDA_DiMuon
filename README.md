@@ -15,19 +15,20 @@ python3 main.py --help
 ``` 
 we have the options for running the anaysis
 ```bash  
+positional arguments:
+  Particle              Choose one particle: Muon or Electron
+
 optional arguments:
   -h, --help            show this help message and exit
-  --SelectionMu         Selection of good Muons
-  --SelectionEl         Selection of good Electrons
-  --DiMuonMass          Muon mass distribution
-  --DiElectronMass      Electron mass distribution
-  --MuonAngle           Muon angle distribution
-  --ElectronAngle       Electron angle distribution
-  --MuonA_FB            Muon Forward-Backward Asymmetry
-  --ElectronA_FB        Electron Forward-Backward Asymmetry
-  --Muon_Sel [MUON_SEL]
-                        Selection global cuts for Muons
-  --Electron_Sel [ELECTRON_SEL]
-                        Selection global cuts for Electrons
+  --Selection, -Sel     Selection the good particles
+  --Mass, -M            Mass distribution
+  --Angle, -A           Angle distribution
+  --Asymmetry, -Asym    Forward-Backward Asymmetry
+  --Muon_Sel [MUON_SEL], -Muon_Sel [MUON_SEL]
+                        Selection global cuts for Muons.
+                        Default string: Muon_pt>15, |Muon_eta|<2.4, Muon_dxy<0.2, Muon_pfRelIso03_all<0.1, Muon_mediumId>0
+  --Electron_Sel [ELECTRON_SEL], -Electron_Sel [ELECTRON_SEL]
+                        Selection global cuts for Electrons.
+                        Default string: Electron_pt>20, |Electron_eta|<2.4, Electron_pfRelIso03_all<0.15, Electron_cutBased>=3
 ```
 
