@@ -44,9 +44,12 @@ python3 main.py "Muon" --Selection
 ```
 If we wanted to change some parameters, we would have to write them in a string, after --Selection.
 
-The selection's outputs are two files ".root" (one for data, and one for the MC) in a folder named "data", which contain the "good" particles.
+The selection's outputs are two files ".root" (one for data, and one for the MC) saved in a folder named "data", which contain the "good" particles.
 
-Afterwards, we can choose one of the three possible analysis, typing the corresponding option after the name of the particle. At the end of the analysis, all the plots are saved in a folder called "Plot".
+Afterwards, we can choose one of the three possible analysis, typing the corresponding option after the name of the particle. Each analysis can be performed independently from the others.
+
+### Dimass distribution
+At the end of the analysis, all the plots are saved in a folder called "Plot".
 
 ## Test
 Four unittests are been written for this analysis to test the selection of the particles, the mass and angle distributions, the forward-backward asymmetry and the library VectorLibrary.h. 
