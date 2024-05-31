@@ -8,6 +8,8 @@ Three analysis are provided:
     
 for two di-leptons channels, muons and electrons, depending on the Z decay.
 
+>  The analysis and the unittests are written in PyRoot, while the library "VectorLibrary.h" is writtten in C++
+   All the files can be found in the folder src
 
 ## How to run
 With the command 
@@ -47,13 +49,14 @@ The selection's outputs are two files ".root" (one for data, and one for the MC)
 
 Afterwards, we can choose one of the three possible analysis. All the plots are saved in a folder called "Plot".
 ## Test
-Four unittests are been written for this analysis to test the selection of the particles, the mass and angle distributions, the forward-backward asymmetry and one library VectorLibrary.h.
+Four unittests are been written for this analysis to test the selection of the particles, the mass and angle distributions, the forward-backward asymmetry and the library VectorLibrary.h. 
 All the unittests can be run in the main folder typing:
 ```bash
 python3 -m unittest Test/name_of_the_test.py
 ```
 If the test passes, there will be written: OK
 
-
+## Documentation
+The documentation is done with Doxigen and can be found here.
 
 
