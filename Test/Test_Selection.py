@@ -21,7 +21,7 @@ class TestSelection(unittest.TestCase):
              
         for entry in tree:
            
-            self.assertTrue(((entry.GoodMuon_pt[0] > 25) and (entry.GoodMuon_pt[1] > 15)) , "pT Cuts")
+            self.assertTrue(((entry.GoodMuon_pt[0] > 25) and (entry.GoodMuon_pt[1] > 15)), "pT Cuts")
             
             self.assertTrue(abs(entry.GoodMuon_eta[0]) < 2.4 and abs(entry.GoodMuon_eta[1]) < 2.4, "Eta Cuts")
             
