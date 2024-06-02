@@ -52,7 +52,7 @@ The forward-backward asymmetry is instead presented in six bins in rapidity but 
 In the folder "Plot" we can find two subfolders called "Muon" and "Electron", where are saved all the plots relative to that channel. 
 
 ## Test
-Four unittests are been written for this analysis to test the selection of the particles, the mass and angle distributions, the forward-backward asymmetry and the library VectorLibrary.h. 
+Four unittests are been written for this analysis to test the selection of the particles, the mass and angle distributions, the forward-backward asymmetry and the library Vector_Library.h. 
 All the unittests can be run in the main folder typing:
 ```bash
 python3 -m unittest Test/name_of_the_test.py
