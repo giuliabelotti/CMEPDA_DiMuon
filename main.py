@@ -13,12 +13,12 @@ from src import Plot_AFB
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('Particle', help='Choose one particle: Muon or Electron', nargs='?', type = str, action = "store")
-    parser.add_argument('--Selection', '-Sel', help='Selection the good particles', action = "store_true")
-    parser.add_argument('--Mass', '-M', help='Mass distribution', action = "store_true")
-    parser.add_argument('--Angle', '-A', help='Angle distribution', action = "store_true")
-    parser.add_argument('--Asymmetry', '-Asym', help='Forward-Backward Asymmetry', action = "store_true")
-    parser.add_argument('--Muon_Sel', '-Muon_Sel', help='Selection global cuts for Muons. \nDefault string: Muon_pt>15, |Muon_eta|<2.4, Muon_dxy<0.2, Muon_pfRelIso03_all<0.1, Muon_mediumId>0', nargs='?', default= "Muon_pt>15 && abs(Muon_eta)<2.4 && Muon_dxy<0.2 && Muon_pfRelIso03_all<0.1 && Muon_mediumId>0", type = str, action = "store")
-    parser.add_argument('--Electron_Sel', '-Electron_Sel', help='Selection global cuts for Electrons. \nDefault string: Electron_pt>20, |Electron_eta|<2.4, Electron_pfRelIso03_all<0.15, Electron_cutBased>=3 ', nargs='?', default= "Electron_pt>20 && abs(Electron_eta)<2.4 && Electron_pfRelIso03_all<0.15 && Electron_cutBased>=3", type = str, action = "store")
+    parser.add_argument('-Sel', '--Selection', help='Selection the good particles', action = "store_true")
+    parser.add_argument('-M', '--Mass', help='Mass distribution', action = "store_true")
+    parser.add_argument('-A', '--Angle', help='Angle distribution', action = "store_true")
+    parser.add_argument('-Asym', '--Asymmetry', help='Forward-Backward Asymmetry', action = "store_true")
+    parser.add_argument('-Muon_Sel', '--Muon_Sel', help='Selection global cuts for Muons. \nDefault string: Muon_pt>15, |Muon_eta|<2.4, Muon_dxy<0.2, Muon_pfRelIso03_all<0.1, Muon_mediumId>0', nargs='?', default= "Muon_pt>15 && abs(Muon_eta)<2.4 && Muon_dxy<0.2 && Muon_pfRelIso03_all<0.1 && Muon_mediumId>0", type = str, action = "store")
+    parser.add_argument('-Electron_Sel', '--Electron_Sel', help='Selection global cuts for Electrons. \nDefault string: Electron_pt>20, |Electron_eta|<2.4, Electron_pfRelIso03_all<0.15, Electron_cutBased>=3 ', nargs='?', default= "Electron_pt>20 && abs(Electron_eta)<2.4 && Electron_pfRelIso03_all<0.15 && Electron_cutBased>=3", type = str, action = "store")
 
     args = parser.parse_args()
     logging.basicConfig(level = logging.INFO)
