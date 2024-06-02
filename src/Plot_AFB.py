@@ -150,6 +150,7 @@ def AFB_Style(histo, canvas_name, particle):
     histo.SetMaximum(1.4)
     histo.SetMinimum(-1.4)
     histo.SetTitle("")
+    histo.SetLineColor(ROOT.kBlack)
 
     if particle == "Muon":
         text.SetTextSize(0.05)

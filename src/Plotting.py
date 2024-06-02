@@ -123,10 +123,10 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
          ratio.SetMaximum(3)
 
     if particle == "Muon":
-        ratio.GetXaxis().SetTitle("cos#theta")
+        ratio.GetXaxis().SetTitle("cos#theta*")
         ratio.GetXaxis().SetTitleSize(0.13)
     if particle == "Electron":
-        ratio.GetXaxis().SetTitle("cos#theta")
+        ratio.GetXaxis().SetTitle("cos#theta*")
         ratio.GetXaxis().SetTitleSize(0.13)
 
     ratio.Draw("PESAME")
@@ -172,6 +172,7 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
     histoMC.GetXaxis().SetLabelSize(0)
     histoMC.SetTitle("")
     histoMC.SetFillColor(ROOT.kOrange-2)
+    histoMC.SetLineColor(ROOT.kOrange-2)
     histoMC.GetYaxis().SetTitleSize(0.04)
     histo.SetMarkerStyle(20)
     histo.SetMarkerSize(1.0)
@@ -253,6 +254,7 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
     ratio.SetTitle("")
     ratio.SetMarkerStyle(20)
     ratio.SetMarkerSize(1.0)
+    ratio.SetLineColor(ROOT.kBlack)
     ratio.GetXaxis().SetLabelSize(0.13)
     ratio.GetYaxis().SetLabelSize(0.11)
     ratio.GetYaxis().SetTitleSize(0.13)
