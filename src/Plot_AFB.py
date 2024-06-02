@@ -1,4 +1,4 @@
-""" Functions to draw forward and backward asymmetry """
+""" Functions to draw the forward and backward asymmetry """
 
 import ROOT
 
@@ -72,7 +72,7 @@ def Plot(A_FB, canvas_name, particle):
     text.SetTextSize(0.05)
 
     pad1.cd()
-    A_FB1_range = A_FB.ProjectionX("Range1", 1,1, "ED")
+    A_FB1_range = A_FB.ProjectionX("Range1", 1, 1, "ED")
     AFB_Style(A_FB1_range, canvas_name, particle)
     if particle == "Muon":
         text.DrawLatex(0.19,0.87, "0.0 < |y_{#mu#mu}| < 0.4")
@@ -80,7 +80,7 @@ def Plot(A_FB, canvas_name, particle):
         text.DrawLatex(0.19,0.87, "0.0 < |y_{ee}| < 0.4")
 
     pad2.cd()
-    A_FB2_range = A_FB.ProjectionX("Range2", 2,2, "ED")
+    A_FB2_range = A_FB.ProjectionX("Range2", 2, 2, "ED")
     AFB_Style(A_FB2_range, canvas_name, particle)
     if particle == "Muon":
         text.DrawLatex(0.19,0.87, "0.4 < |y_{#mu#mu}| < 0.8")
@@ -88,7 +88,7 @@ def Plot(A_FB, canvas_name, particle):
         text.DrawLatex(0.19,0.87, "0.4 < |y_{ee}| < 0.8")
 
     pad3.cd()
-    A_FB3_range = A_FB.ProjectionX("Range3",3 ,3, "ED")
+    A_FB3_range = A_FB.ProjectionX("Range3", 3, 3, "ED")
     AFB_Style(A_FB3_range, canvas_name, particle)
     if particle == "Muon":
         text.DrawLatex(0.19,0.87, "0.8 < |y_{#mu#mu}| < 1.2")
@@ -96,7 +96,7 @@ def Plot(A_FB, canvas_name, particle):
         text.DrawLatex(0.19,0.87, "0.8 < |y_{ee}| < 1.2")
 
     pad4.cd()
-    A_FB4_range = A_FB.ProjectionX("Range4", 4,4, "ED")
+    A_FB4_range = A_FB.ProjectionX("Range4", 4, 4, "ED")
     AFB_Style(A_FB4_range, canvas_name, particle)
     if particle == "Muon":
         text.DrawLatex(0.19,0.87, "1.2 < |y_{#mu#mu}| < 1.6")
@@ -104,7 +104,7 @@ def Plot(A_FB, canvas_name, particle):
         text.DrawLatex(0.19,0.87, "1.2 < |y_{ee}| < 1.6")
 
     pad5.cd()
-    A_FB5_range = A_FB.ProjectionX("Range5", 5,5, "ED")
+    A_FB5_range = A_FB.ProjectionX("Range5", 5, 5, "ED")
     AFB_Style(A_FB5_range, canvas_name, particle)
     if particle == "Muon":
         text.DrawLatex(0.19,0.87, "1.6 < |y_{#mu#mu}| < 2.0")
@@ -112,7 +112,7 @@ def Plot(A_FB, canvas_name, particle):
         text.DrawLatex(0.19,0.87, "1.6 < |y_{ee}| < 2.0")
 
     pad6.cd()
-    A_FB6_range = A_FB.ProjectionX("Range6", 6,6, "ED")
+    A_FB6_range = A_FB.ProjectionX("Range6", 6, 6, "ED")
     AFB_Style(A_FB6_range, canvas_name, particle)
     if particle == "Muon":
         text.DrawLatex(0.19,0.87, "2.0 < |y_{#mu#mu}| < 2.4")
@@ -120,7 +120,6 @@ def Plot(A_FB, canvas_name, particle):
         text.DrawLatex(0.19,0.87, "2.0 < |y_{ee}| < 2.4")
 
     c.Draw()
-    #c.SaveAs("A_fb.pdf")
     return c
 
 def AFB_Style(histo, canvas_name, particle):
