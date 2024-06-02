@@ -1,6 +1,6 @@
 import unittest
 import ROOT
-import ImportFile
+from src import ImportFile
 from src.ParticleSelection import MuCandidates
 from src.ParticleSelection import ElectronCandidates
 
