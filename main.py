@@ -45,15 +45,15 @@ if __name__ == '__main__':
             if not os.path.exists("Plot/Muon/MassDistribution"):
                 os.makedirs("Plot/Muon/MassDistribution")
                 logging.info("Created the subfolder Muon and MassDistribution")
-            canvas1.SaveAs("Plot/Muon/MassDistribution/MuMass_1range.pdf")
+            canvas1.SaveAs("Plot/Muon/MassDistribution/MuMass_1range.png")
 
             canvas2 = Plotting.PlottingMass(h_mu_08_y_12, h_mu_08_y_12_MC, "MuMassDistribution2", "Muon")
             canvas2.Update()
-            canvas2.SaveAs("Plot/Muon/MassDistribution/MuMass_2range.pdf")
+            canvas2.SaveAs("Plot/Muon/MassDistribution/MuMass_2range.png")
 
             canvas3 = Plotting.PlottingMass(h_mu_16_y_2, h_mu_16_y_2_MC, "MuMassDistribution3", "Muon")
             canvas3.Update()
-            canvas3.SaveAs("Plot/Muon/MassDistribution/MuMass_3range.pdf")
+            canvas3.SaveAs("Plot/Muon/MassDistribution/MuMass_3range.png")
 
         if args.Angle is True:
             h_mu_0_y_04_a, h_mu_08_y_12_a, h_mu_16_y_2_a = AngleDistribution.AngleDistribution("data/GoodMu.root", "TreeMu", "Muon")
@@ -63,15 +63,15 @@ if __name__ == '__main__':
             if not os.path.exists("Plot/Muon/AngleDistribution"):
                 os.makedirs("Plot/Muon/AngleDistribution")
                 logging.info("Created the subfolder Muon and AngleDistribution")
-            canvasAngle1.SaveAs("Plot/Muon/AngleDistribution/MuAngle_1range.pdf")
+            canvasAngle1.SaveAs("Plot/Muon/AngleDistribution/MuAngle_1range.png")
 
             canvasAngle2 = Plotting.PlottingAngle(h_mu_08_y_12_a, h_mu_08_y_12_MC_a, "MuAngleDistribution2", "Muon")
             canvasAngle2.Update()
-            canvasAngle2.SaveAs("Plot/Muon/AngleDistribution/MuAngle_2range.pdf")
+            canvasAngle2.SaveAs("Plot/Muon/AngleDistribution/MuAngle_2range.png")
 
             canvasAngle3 = Plotting.PlottingAngle(h_mu_16_y_2_a, h_mu_16_y_2_MC_a, "MuAngleDistribution3", "Muon")
             canvasAngle3.Update()
-            canvasAngle3.SaveAs("Plot/Muon/AngleDistribution/MuAngle_3range.pdf")
+            canvasAngle3.SaveAs("Plot/Muon/AngleDistribution/MuAngle_3range.png")
         
         if args.Asymmetry is True:
             A_FB_Mu = A_FB.Asymmetry("data/GoodMu.root", "TreeMu", "Muon")
@@ -80,7 +80,7 @@ if __name__ == '__main__':
             if not os.path.exists("Plot/Muon/Asymmetry"):
                 os.makedirs("Plot/Muon/Asymmetry")
                 logging.info("Created the subfolder Muon and Asymmetry")
-            c_mu.SaveAs("Plot/Muon/Asymmetry/Mu_AFB.pdf")
+            c_mu.SaveAs("Plot/Muon/Asymmetry/Mu_AFB.png")
 
     elif args.Particle == "Electron":
 
@@ -97,15 +97,15 @@ if __name__ == '__main__':
             if not os.path.exists("Plot/Electron/MassDistribution"):
                 os.makedirs("Plot/Electron/MassDistribution")
                 logging.info("Created the subfolder Electron and MassDistribution")
-            canvas4.SaveAs("Plot/Electron/MassDistribution/ElMass_1range.pdf")
+            canvas4.SaveAs("Plot/Electron/MassDistribution/ElMass_1range.png")
 
             canvas5 = Plotting.PlottingMass(h_e_08_y_12, h_e_08_y_12_MC, "ElMassDistribution2", "Electron")
             canvas5.Update()
-            canvas5.SaveAs("Plot/Electron/MassDistribution/ElMass_2range.pdf")
+            canvas5.SaveAs("Plot/Electron/MassDistribution/ElMass_2range.png")
 
             canvas6 = Plotting.PlottingMass(h_e_16_y_2, h_e_16_y_2_MC, "ElMassDistribution3", "Electron")
             canvas6.Update()
-            canvas6.SaveAs("Plot/Electron/MassDistribution/ElMass_3range.pdf")
+            canvas6.SaveAs("Plot/Electron/MassDistribution/ElMass_3range.png")
 
         if args.Angle is True:
             h_e_0_y_04_a, h_e_08_y_12_a, h_e_16_y_2_a = AngleDistribution.AngleDistribution("data/GoodElectron.root", "TreeEl", "Electron")
@@ -115,15 +115,15 @@ if __name__ == '__main__':
             if not os.path.exists("Plot/Electron/AngleDistribution"):
                 os.makedirs("Plot/Electron/AngleDistribution")
                 logging.info("Created the subfolder Electron and AngleDistribution")
-            canvasAngle4.SaveAs("Plot/Electron/AngleDistribution/ElAngle_1range.pdf")
+            canvasAngle4.SaveAs("Plot/Electron/AngleDistribution/ElAngle_1range.png")
 
             canvasAngle5 = Plotting.PlottingAngle(h_e_08_y_12_a, h_e_08_y_12_MC_a, "ElAngleDistribution2", "Electron")
             canvasAngle5.Update()
-            canvasAngle5.SaveAs("Plot/Electron/AngleDistribution/ElAngle_2range.pdf")
+            canvasAngle5.SaveAs("Plot/Electron/AngleDistribution/ElAngle_2range.png")
             
             canvasAngle6 = Plotting.PlottingAngle(h_e_16_y_2_a, h_e_16_y_2_MC_a, "ElAngleDistribution3", "Electron")
             canvasAngle6.Update()
-            canvasAngle6.SaveAs("Plot/Electron/AngleDistribution/ElAngle_3range.pdf")
+            canvasAngle6.SaveAs("Plot/Electron/AngleDistribution/ElAngle_3range.png")
 
         if args.Asymmetry is True:
             A_FB_El = A_FB.Asymmetry("data/GoodElectron.root", "TreeEl", "Electron")
@@ -132,5 +132,5 @@ if __name__ == '__main__':
             if not os.path.exists("Plot/Electron/Asymmetry"):
                 os.makedirs("Plot/Electron/Asymmetry")
                 logging.info("Created the subfolder Electron and Asymmetry")
-            c_el.SaveAs("Plot/Electron/Asymmetry/El_AFB.pdf")      
+            c_el.SaveAs("Plot/Electron/Asymmetry/El_AFB.png")      
 
