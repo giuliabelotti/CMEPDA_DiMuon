@@ -23,10 +23,15 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     logging.basicConfig(level = logging.INFO)
-
-    if not os.path.exists("Plot"):
-            os.makedirs("Plot")
-            logging.info("Created the folder Plot")
+    
+    if not args.Particle in ("Muon", "Electron"):
+        raise ValueError('Wrong particle. Accepted only Muon or Electron')
+        
+    try:
+        os.makedirs("Plot")
+        logging.info('Created the folder Plot')
+    except FileExistsError:
+        logging.info('The folder Plot has already been created')    
 
     df_data_mu, df_data_el, df_MC = ImportFile.CreateDF()
 
@@ -42,9 +47,11 @@ if __name__ == '__main__':
             h_mu_0_y_04_MC, h_mu_08_y_12_MC, h_mu_16_y_2_MC = MassDistribution.MassDistribution("data/GoodMuMC.root", "TreeMuMC", "Muon")
             canvas1 = Plotting.PlottingMass(h_mu_0_y_04, h_mu_0_y_04_MC, "MuMassDistribution1", "Muon")
             canvas1.Update()
-            if not os.path.exists("Plot/Muon/MassDistribution"):
+            try:
                 os.makedirs("Plot/Muon/MassDistribution")
-                logging.info("Created the subfolder Muon and MassDistribution")
+                logging.info("Created the subfolder Muon/MassDistribution")
+            except FileExistsError:
+                logging.info('The subfolder Muon/MassDistribution has already been created')
             canvas1.SaveAs("Plot/Muon/MassDistribution/MuMass_1range.png")
 
             canvas2 = Plotting.PlottingMass(h_mu_08_y_12, h_mu_08_y_12_MC, "MuMassDistribution2", "Muon")
@@ -60,9 +67,12 @@ if __name__ == '__main__':
             h_mu_0_y_04_MC_a, h_mu_08_y_12_MC_a, h_mu_16_y_2_MC_a = AngleDistribution.AngleDistribution("data/GoodMuMC.root", "TreeMuMC", "Muon")
             canvasAngle1 = Plotting.PlottingAngle(h_mu_0_y_04_a, h_mu_0_y_04_MC_a, "MuAngleDistribution1", "Muon")
             canvasAngle1.Update()
-            if not os.path.exists("Plot/Muon/AngleDistribution"):
+
+            try:
                 os.makedirs("Plot/Muon/AngleDistribution")
-                logging.info("Created the subfolder Muon and AngleDistribution")
+                logging.info("Created the subfolder Muon/AngleDistribution")
+            except FileExistsError:
+                logging.info('The subfolder Muon/AngleDistribution has already been created')
             canvasAngle1.SaveAs("Plot/Muon/AngleDistribution/MuAngle_1range.png")
 
             canvasAngle2 = Plotting.PlottingAngle(h_mu_08_y_12_a, h_mu_08_y_12_MC_a, "MuAngleDistribution2", "Muon")
@@ -77,9 +87,12 @@ if __name__ == '__main__':
             A_FB_Mu = A_FB.Asymmetry("data/GoodMu.root", "TreeMu", "Muon")
             c_mu = Plot_AFB.Plot(A_FB_Mu, "Asymmetry_Muon", "Muon")
             c_mu.Update()
-            if not os.path.exists("Plot/Muon/Asymmetry"):
+
+            try:
                 os.makedirs("Plot/Muon/Asymmetry")
-                logging.info("Created the subfolder Muon and Asymmetry")
+                logging.info("Created the subfolder Muon/Asymmetry")
+            except FileExistsError:
+                logging.info('The subfolder Muon/Asymmetry has already been created')
             c_mu.SaveAs("Plot/Muon/Asymmetry/Mu_AFB.png")
 
     elif args.Particle == "Electron":
@@ -94,9 +107,12 @@ if __name__ == '__main__':
             h_e_0_y_04_MC, h_e_08_y_12_MC, h_e_16_y_2_MC = MassDistribution.MassDistribution("data/GoodElectronMC.root", "TreeElMC", "Electron")
             canvas4 = Plotting.PlottingMass(h_e_0_y_04, h_e_0_y_04_MC,  "ElMassDistribution1", "Electron")
             canvas4.Update()
-            if not os.path.exists("Plot/Electron/MassDistribution"):
+
+            try:
                 os.makedirs("Plot/Electron/MassDistribution")
-                logging.info("Created the subfolder Electron and MassDistribution")
+                logging.info("Created the subfolder Electron/MassDistribution")
+            except FileExistsError:
+                logging.info('The subfolder Electron/MassDistribution has already been created')
             canvas4.SaveAs("Plot/Electron/MassDistribution/ElMass_1range.png")
 
             canvas5 = Plotting.PlottingMass(h_e_08_y_12, h_e_08_y_12_MC, "ElMassDistribution2", "Electron")
@@ -112,9 +128,12 @@ if __name__ == '__main__':
             h_e_0_y_04_MC_a, h_e_08_y_12_MC_a, h_e_16_y_2_MC_a = AngleDistribution.AngleDistribution("data/GoodElectronMC.root", "TreeElMC", "Electron")
             canvasAngle4 = Plotting.PlottingAngle(h_e_0_y_04_a, h_e_0_y_04_MC_a,  "ElAngleDistribution1", "Electron")
             canvasAngle4.Update()
-            if not os.path.exists("Plot/Electron/AngleDistribution"):
+
+            try:
                 os.makedirs("Plot/Electron/AngleDistribution")
-                logging.info("Created the subfolder Electron and AngleDistribution")
+                logging.info("Created the subfolder Electron/AngleDistribution")
+            except FileExistsError:
+                logging.info('The subfolder Electron/AngleDistribution has already been created')
             canvasAngle4.SaveAs("Plot/Electron/AngleDistribution/ElAngle_1range.png")
 
             canvasAngle5 = Plotting.PlottingAngle(h_e_08_y_12_a, h_e_08_y_12_MC_a, "ElAngleDistribution2", "Electron")
@@ -129,8 +148,11 @@ if __name__ == '__main__':
             A_FB_El = A_FB.Asymmetry("data/GoodElectron.root", "TreeEl", "Electron")
             c_el = Plot_AFB.Plot(A_FB_El, "Asymmetry_El", "Electron")
             c_el.Update()
-            if not os.path.exists("Plot/Electron/Asymmetry"):
+
+            try:
                 os.makedirs("Plot/Electron/Asymmetry")
-                logging.info("Created the subfolder Electron and Asymmetry")
+                logging.info("Created the subfolder Electron/Asymmetry")
+            except FileExistsError:
+                logging.info('The subfolder Electron/Asymmetry has already been created')
             c_el.SaveAs("Plot/Electron/Asymmetry/El_AFB.png")      
 
