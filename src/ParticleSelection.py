@@ -23,7 +23,7 @@ def MuCandidates(dataframe, name_dataset, Muon_Sel, nevents=None):
             None
     """
 
-    if nevents>0:
+    if nevents is not None:
         dataframe = dataframe.Range(nevents)
 
     df_mu = dataframe.Filter("nMuon >= 2", "Events with at least two muons")
@@ -46,9 +46,12 @@ def MuCandidates(dataframe, name_dataset, Muon_Sel, nevents=None):
     outCols.push_back("GoodMuon_mass")
 
     if name_dataset == "Data":
-        if not os.path.exists("data"):
+        try:
             os.makedirs("data")
             logging.info('Created the folder data')
+        except FileExistsError:
+            logging.info('The folder data has already been created')
+
         df_mu = df_mu.Snapshot("TreeMu", "data/GoodMu.root", outCols)
         logging.info('Created a file GoodMu.root with Muons selected')
 
@@ -103,9 +106,12 @@ def ElectronCandidates(dataframe, name_dataset, Electron_Sel, nevents=None):
     outCols.push_back("GoodElectron_mass")
 
     if name_dataset == "Data":
-        if not os.path.exists("data"):
+        try:
             os.makedirs("data")
             logging.info('Created the folder data')
+        except FileExistsError:
+            logging.info('The folder data has already been created')
+
         df_el = df_el.Snapshot("TreeEl", "data/GoodElectron.root", outCols)
         logging.info('Created a file GoodElectron.root with the Electrons selected')
 
