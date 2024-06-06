@@ -14,6 +14,8 @@ project = 'CMEPDA_Exam_DrellYanEvents-13TeV'
 copyright = '2024, Giulia Belotti'
 author = 'Giulia Belotti'
 
+master_doc = 'index'
+
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
