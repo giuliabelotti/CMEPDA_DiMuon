@@ -8,9 +8,9 @@ Welcome to CMEPDA_Exam_DrellYanEvents-13TeV's documentation!
 
 **CMEPDA_Exam_DrellYanEvents-13TeV** is a project whose goal is reproduce the forward-backward asymmetry of Drell-Yan events in pp collisions using CMS Open Data at 13 TeV, according to the results presented by CMS Collaboration in the article `arXiv:1806.00863v2 [hep-ex] <https://arxiv.org/abs/1806.00863v2>`_.
 Three analysis are provided:
-  * Mass distribution
-  * Angle distribution
-  * Forward-backward asymmetry
+* Mass distribution
+* Angle distribution
+* Forward-backward asymmetry
     
 for two di-leptons channels, muons and electrons, depending on the Z decay.
 
