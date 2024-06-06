@@ -69,6 +69,6 @@ python3 -m unittest Test/name_of_the_test.py
 If the test passes, there will be written: OK
 
 ## Documentation
-The documentation is done with Doxigen and can be found here.
+The documentation is done with Sphinx and can be found [here](https://cmepda-exam-drellyanevents-13tev.readthedocs.io/en/latest/)
 
 
