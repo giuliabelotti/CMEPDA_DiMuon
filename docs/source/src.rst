@@ -5,7 +5,7 @@ Submodules
 ----------
 
 src.ImportFile module
------------------------------
+---------------------
 
 .. automodule:: src.ImportFile
    :members:
@@ -13,7 +13,7 @@ src.ImportFile module
    :show-inheritance:
 
 src.ParticleSelection module
-----------------
+----------------------------
 
 .. automodule:: src.ParticleSelection
    :members:
@@ -21,7 +21,7 @@ src.ParticleSelection module
    :show-inheritance:
 
 src.MassDistribution module
-----------------
+---------------------------
 
 .. automodule:: src.MassDistribution
    :members:
@@ -29,7 +29,7 @@ src.MassDistribution module
    :show-inheritance:
 
 src.AngleDistribution module
-----------------
+----------------------------
 
 .. automodule:: src.AngleDistribution
    :members:
@@ -37,7 +37,7 @@ src.AngleDistribution module
    :show-inheritance:
 
 src.A_FB module
-----------------
+---------------
 
 .. automodule:: src.A_FB
    :members:
@@ -45,7 +45,7 @@ src.A_FB module
    :show-inheritance:
 
 src.Plotting module
-----------------
+-------------------
 
 .. automodule:: src.Plotting
    :members:
@@ -53,7 +53,7 @@ src.Plotting module
    :show-inheritance:
 
 src.Plot_AFB module
-----------------
+-------------------
 
 .. automodule:: src.Plot_AFB
    :members:

@@ -5,7 +5,7 @@ Submodules
 ----------
 
 Test.Test_Selection module
------------------------------
+--------------------------
 
 .. automodule:: Test.Test_Selection
    :members:
@@ -13,7 +13,7 @@ Test.Test_Selection module
    :show-inheritance:
 
 Test.Test_Distribution module
-----------------
+-----------------------------
 
 .. automodule:: Test.Test_Distribution
    :members:
@@ -21,7 +21,7 @@ Test.Test_Distribution module
    :show-inheritance:
 
 Test.Test_Asymmetry module
-----------------
+--------------------------
 
 .. automodule:: Test.Test_Asymmetry
    :members:
@@ -29,7 +29,7 @@ Test.Test_Asymmetry module
    :show-inheritance:
 
 Test.Test_VectorLibrary module
-----------------
+------------------------------
 
 .. automodule:: Test.Test_VectorLibrary
    :members:
