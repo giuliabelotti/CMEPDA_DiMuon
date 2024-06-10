@@ -30,10 +30,10 @@ optional arguments:
   -Asym, --Asymmetry    Forward-Backward Asymmetry
   -Muon_Sel [MUON_SEL], --Muon_Sel [MUON_SEL]
                         Selection global cuts for Muons.
-                        Default string: Muon_pt>15, |Muon_eta|<2.4, Muon_dxy<0.2, Muon_pfRelIso03_all<0.1, Muon_mediumId>0
+                        Default values: Muon_pt>15, |Muon_eta|<2.4, Muon_dxy<0.2, Muon_pfRelIso03_all<0.1, Muon_mediumId>0
   -Electron_Sel [ELECTRON_SEL], --Electron_Sel [ELECTRON_SEL]
                         Selection global cuts for Electrons.
-                        Default string: Electron_pt>20, |Electron_eta|<2.4, Electron_pfRelIso03_all<0.15, Electron_cutBased>=3
+                        Default values: Electron_pt>20, |Electron_eta|<2.4, Electron_pfRelIso03_all<0.15, Electron_cutBased>=3
 ```
 ## Analysis
 The data are imported from [CMS Open Data Portal](https://opendata.cern.ch/) and have to be selected. 
