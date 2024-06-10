@@ -83,7 +83,7 @@ def ElectronCandidates(dataframe, name_dataset, Electron_Sel, nevents=None):
             None
     """
 
-    if nevents>0:
+    if nevents is not None:
         dataframe = dataframe.Range(nevents)
 
     df_el = dataframe.Filter("nElectron >= 2", "Events with at least two electrons")
