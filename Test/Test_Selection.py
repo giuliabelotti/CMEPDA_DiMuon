@@ -1,4 +1,4 @@
-""" Test the particle selection """
+""" Test the particles selection """
 
 import unittest
 import ROOT
