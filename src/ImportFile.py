@@ -1,4 +1,4 @@
-""" Import the correct RDataFrame from CMS Open Data """
+""" Import the correct RDataFrame from CMS Open Data Portal """
 
 import ROOT
 
