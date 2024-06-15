@@ -13,14 +13,14 @@ class TestDistribution(unittest.TestCase):
     """ Class to test the plotting """
     
     def test_MassDistribution(self):
-        """ Test the plotting function for the muons """
+        """ Test the invariant mass plotting functions for the muons and the electrons """
 
         h_mu_0_y_04, h_mu_08_y_12, h_mu_16_y_2 = MassDistribution('data/GoodMu.root', 'TreeMu', 'Muon')
         h_mu_0_y_04_MC, h_mu_08_y_12_MC, h_mu_16_y_2_MC = MassDistribution('data/GoodMuMC.root', 'TreeMuMC', 'Muon')
         self.assertIs(type(h_mu_0_y_04.GetValue()), ROOT.TH1D)
         self.assertIs(type(h_mu_0_y_04_MC.GetValue()), ROOT.TH1D)
 
-        canvas_mu = PlottingMass(h_mu_0_y_04, h_mu_0_y_04_MC, "MuMassDistribution1", "Muon")
+        PlottingMass(h_mu_0_y_04, h_mu_0_y_04_MC, "MuMassDistribution1", "Muon")
         self.assertEqual(h_mu_0_y_04_MC.GetMinimum(), 10)
         self.assertEqual(h_mu_0_y_04_MC.GetMaximum(), 1e6)
         self.assertEqual(h_mu_0_y_04_MC.GetYaxis().GetTitle(), "Events/GeV")
@@ -37,7 +37,7 @@ class TestDistribution(unittest.TestCase):
         self.assertIs(type(h_e_0_y_04.GetValue()), ROOT.TH1D)
         self.assertIs(type(h_e_0_y_04_MC.GetValue()), ROOT.TH1D)
 
-        canvas_e = PlottingMass(h_e_0_y_04, h_e_0_y_04_MC,  "ElMassDistribution1", "Electron")
+        PlottingMass(h_e_0_y_04, h_e_0_y_04_MC,  "ElMassDistribution1", "Electron")
         self.assertEqual(h_e_0_y_04_MC.GetMinimum(), 10)
         self.assertEqual(h_e_0_y_04_MC.GetMaximum(), 1e6)
         self.assertEqual(h_e_0_y_04_MC.GetYaxis().GetTitle(), "Events/GeV")
@@ -50,14 +50,14 @@ class TestDistribution(unittest.TestCase):
         self.assertEqual(h_e_0_y_04.GetLineColor(), ROOT.kBlack)
 
     def test_AngleDistribution(self):
-        """ Test the plotting function for the electrons """
+        """ Test the angle plotting functions for the muons and the electrons """
 
         h_mu_0_y_04_a, h_mu_08_y_12_a, h_mu_16_y_2_a = AngleDistribution('data/GoodMu.root', 'TreeMu', 'Muon')
         h_mu_0_y_04_MC_a, h_mu_08_y_12_MC_a, h_mu_16_y_2_MC_a = AngleDistribution('data/GoodMuMC.root', 'TreeMuMC', 'Muon')
         self.assertIs(type(h_mu_0_y_04_a.GetValue()), ROOT.TH1D)
         self.assertIs(type(h_mu_0_y_04_MC_a.GetValue()), ROOT.TH1D)
 
-        canvasAngle_mu = PlottingAngle(h_mu_0_y_04_a, h_mu_0_y_04_MC_a, "MuAngleDistribution1", "Muon")
+        PlottingAngle(h_mu_0_y_04_a, h_mu_0_y_04_MC_a, "MuAngleDistribution1", "Muon")
         self.assertEqual(h_mu_0_y_04_MC_a.GetMinimum(), 10)
         self.assertEqual(h_mu_0_y_04_MC_a.GetMaximum(), 6e4)
         self.assertEqual(h_mu_0_y_04_MC_a.GetYaxis().GetTitle(), "Events/0.05")
@@ -74,7 +74,7 @@ class TestDistribution(unittest.TestCase):
         self.assertIs(type(h_e_0_y_04_a.GetValue()), ROOT.TH1D)
         self.assertIs(type(h_e_0_y_04_MC_a.GetValue()), ROOT.TH1D)
 
-        canvasAngle_el = PlottingAngle(h_e_0_y_04_a, h_e_0_y_04_MC_a,  "ElAngleDistribution1", "Electron")
+        PlottingAngle(h_e_0_y_04_a, h_e_0_y_04_MC_a,  "ElAngleDistribution1", "Electron")
         self.assertEqual(h_e_0_y_04_MC_a.GetMinimum(), 10)
         self.assertEqual(h_e_0_y_04_MC_a.GetMaximum(), 6e4)
         self.assertEqual(h_e_0_y_04_MC_a.GetYaxis().GetTitle(), "Events/0.05")
