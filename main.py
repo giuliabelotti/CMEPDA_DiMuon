@@ -1,4 +1,5 @@
 """ Run the analysis. Various arguments can be provided. """
+
 import logging
 import os
 import argparse
@@ -47,6 +48,7 @@ if __name__ == '__main__':
             h_mu_0_y_04_MC, h_mu_08_y_12_MC, h_mu_16_y_2_MC = MassDistribution.MassDistribution("data/GoodMuMC.root", "TreeMuMC", "Muon")
             canvas1 = Plotting.PlottingMass(h_mu_0_y_04, h_mu_0_y_04_MC, "MuMassDistribution1", "Muon")
             canvas1.Update()
+
             try:
                 os.makedirs("Plot/Muon/MassDistribution")
                 logging.info("Created the subfolder Muon/MassDistribution")
