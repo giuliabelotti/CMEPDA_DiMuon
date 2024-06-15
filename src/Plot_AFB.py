@@ -15,6 +15,9 @@ def Plot(A_FB, canvas_name, particle):
 
         Returns:
             The Canvas
+
+        Return type:
+            ROOT.TCanvas
     """
 
     ROOT.gStyle.SetOptStat(0)
@@ -135,7 +138,9 @@ def AFB_Style(histo, canvas_name, particle):
 
         Returns:
             The modified histogram
-
+        
+        Return type:
+            ROOT.TH2D   
     """
 
     text = ROOT.TLatex()

@@ -17,6 +17,9 @@ def PlottingMass(histo, histoMC, canvas_name, particle):
 
         Returns:
             The Canvas
+        
+        Return type:
+            ROOT.TCanvas
     """
 
     ROOT.gStyle.SetOptStat(0)
@@ -84,6 +87,9 @@ def PlottingAngle(histo, histoMC, canvas_name, particle):
 
         Returns:
             The Canvas
+
+        Return type:
+            ROOT.TCanvas
     """
 
     ROOT.gStyle.SetOptStat(0)

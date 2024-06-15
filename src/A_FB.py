@@ -15,6 +15,10 @@ def Asymmetry(file_name, Tree_name, particle):
 
         Returns:
             An histogram 2D, that represents the asymmetry forward-backward
+
+        Return type:
+            ROOT.TH2D
+
     """
 
     df = ROOT.RDataFrame(Tree_name, file_name)

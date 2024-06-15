@@ -15,6 +15,9 @@ def MassDistribution(file_name, Tree_name, particle):
 
         Returns:
             Three histograms, one for each rapidity region
+
+        Return type:
+            ROOT.TH1D
     """
 
     df = ROOT.RDataFrame(Tree_name, file_name)
