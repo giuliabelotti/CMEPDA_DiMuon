@@ -137,10 +137,8 @@ def AFB_Style(histo, canvas_name, particle):
                 The name of the particle
 
         Returns:
-            The modified histogram
-        
-        Return type:
-            ROOT.TH2D   
+            None
+
     """
 
     text = ROOT.TLatex()
@@ -182,5 +180,4 @@ def AFB_Style(histo, canvas_name, particle):
     histo.GetYaxis().CenterTitle()
     histo.GetYaxis().SetTitleOffset(1)
 
-    return histo
 
