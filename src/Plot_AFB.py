@@ -130,7 +130,7 @@ def AFB_Style(histo, canvas_name, particle):
 
         Parameters:
             histo : TH1D
-                Histogram for the forward-backward asymmetry
+                Projected histogram for the forward-backward asymmetry
             canvas_name : string
                 The name of the Canvas
             particle : string
