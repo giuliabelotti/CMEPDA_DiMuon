@@ -148,7 +148,7 @@ def CMSStyle(upper_pad, lower_pad, histo, histoMC, canvas_name, particle, legend
 
         Parameters:
             upper_pad : TPad
-                TPad for the distrubution
+                TPad for the distribution
             lower_pad : TPad
                 TPad for the ratio plot
             histo : TH1D
